@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BaseArmor.Pages;
+
 
 namespace BaseArmor
 {
@@ -23,6 +25,19 @@ namespace BaseArmor
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new _1LoginPage());
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (MessageBox.Show("Вы уверены, что хотите закрыть окно?", "Message",
+            MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.No)
+                e.Cancel = true;
+            else
+
+                e.Cancel = false;
+        }
+
     }
+    
 }

@@ -1,0 +1,877 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ArmorBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="table_id" Type="int" Nullable="false" />
+          <Property Name="start_datatime" Type="datetime" Nullable="false" />
+          <Property Name="duration_minutes" Type="int" Nullable="false" />
+          <Property Name="guests_count" Type="int" Nullable="false" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar" MaxLength="255" />
+          <Property Name="cancellation_reason" Type="nvarchar" MaxLength="255" />
+          <Property Name="cancellation_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Deposit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="method_id" Type="int" Nullable="false" />
+          <Property Name="payment_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiningTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hall_id" Type="int" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Halls">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="has_deposit" Type="bit" Nullable="false" />
+          <Property Name="capacity" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="photo_url" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MethodPay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Restaurants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rating" Type="float" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="average_check" Type="int" />
+          <Property Name="photo_url" Type="nvarchar" MaxLength="255" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusPay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="count_sit" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password_hash" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Waitlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+          <Property Name="guests_count" Type="int" Nullable="false" />
+          <Property Name="desired_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Booking__table_i__46E78A0C">
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiningTable">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="table_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__user_id__45F365D3">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DiningTab__hall___44FF419A">
+          <End Role="Halls" Type="Self.Halls" Multiplicity="1" />
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Halls">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DiningTable">
+              <PropertyRef Name="hall_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Halls__restauran__440B1D61">
+          <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="1" />
+          <End Role="Halls" Type="Self.Halls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Halls">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__role_id__4CA06362">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Waitlist__restau__4BAC3F29">
+          <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="1" />
+          <End Role="Waitlist" Type="Self.Waitlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Waitlist">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Waitlist__user_i__4AB81AF0">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Waitlist" Type="Self.Waitlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Waitlist">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deposit_Booking">
+          <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+          <End Role="Deposit" Type="Self.Deposit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Deposit">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deposit_MethodPay">
+          <End Role="MethodPay" Type="Self.MethodPay" Multiplicity="1" />
+          <End Role="Deposit" Type="Self.Deposit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodPay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Deposit">
+              <PropertyRef Name="method_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deposit_StatusPay">
+          <End Role="StatusPay" Type="Self.StatusPay" Multiplicity="1" />
+          <End Role="Deposit" Type="Self.Deposit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusPay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Deposit">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiningTable_TypeTable1">
+          <End Role="TypeTable" Type="Self.TypeTable" Multiplicity="1" />
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeTable">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DiningTable">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ArmorBaseModelContainer">
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deposit" EntityType="Self.Deposit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiningTable" EntityType="Self.DiningTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Halls" EntityType="Self.Halls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MethodPay" EntityType="Self.MethodPay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurants" EntityType="Self.Restaurants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusPay" EntityType="Self.StatusPay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeTable" EntityType="Self.TypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Waitlist" EntityType="Self.Waitlist" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Booking__table_i__46E78A0C" Association="Self.FK__Booking__table_i__46E78A0C">
+            <End Role="DiningTable" EntitySet="DiningTable" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__user_id__45F365D3" Association="Self.FK__Booking__user_id__45F365D3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DiningTab__hall___44FF419A" Association="Self.FK__DiningTab__hall___44FF419A">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="DiningTable" EntitySet="DiningTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Halls__restauran__440B1D61" Association="Self.FK__Halls__restauran__440B1D61">
+            <End Role="Restaurants" EntitySet="Restaurants" />
+            <End Role="Halls" EntitySet="Halls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__role_id__4CA06362" Association="Self.FK__Users__role_id__4CA06362">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Waitlist__restau__4BAC3F29" Association="Self.FK__Waitlist__restau__4BAC3F29">
+            <End Role="Restaurants" EntitySet="Restaurants" />
+            <End Role="Waitlist" EntitySet="Waitlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Waitlist__user_i__4AB81AF0" Association="Self.FK__Waitlist__user_i__4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Waitlist" EntitySet="Waitlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Status" Association="Self.FK_Booking_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deposit_Booking" Association="Self.FK_Deposit_Booking">
+            <End Role="Booking" EntitySet="Booking" />
+            <End Role="Deposit" EntitySet="Deposit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deposit_MethodPay" Association="Self.FK_Deposit_MethodPay">
+            <End Role="MethodPay" EntitySet="MethodPay" />
+            <End Role="Deposit" EntitySet="Deposit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deposit_StatusPay" Association="Self.FK_Deposit_StatusPay">
+            <End Role="StatusPay" EntitySet="StatusPay" />
+            <End Role="Deposit" EntitySet="Deposit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiningTable_TypeTable1" Association="Self.FK_DiningTable_TypeTable1">
+            <End Role="TypeTable" EntitySet="TypeTable" />
+            <End Role="DiningTable" EntitySet="DiningTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ArmorBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="table_id" Type="Int32" Nullable="false" />
+          <Property Name="start_datatime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="duration_minutes" Type="Int32" Nullable="false" />
+          <Property Name="guests_count" Type="Int32" Nullable="false" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="cancellation_reason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="cancellation_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DiningTable" Relationship="Self.FK__Booking__table_i__46E78A0C" FromRole="Booking" ToRole="DiningTable" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Booking__user_id__45F365D3" FromRole="Booking" ToRole="Users" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Booking_Status" FromRole="Booking" ToRole="Status" />
+          <NavigationProperty Name="Deposit" Relationship="Self.FK_Deposit_Booking" FromRole="Booking" ToRole="Deposit" />
+        </EntityType>
+        <EntityType Name="Deposit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="method_id" Type="Int32" Nullable="false" />
+          <Property Name="payment_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK_Deposit_Booking" FromRole="Deposit" ToRole="Booking" />
+          <NavigationProperty Name="MethodPay" Relationship="Self.FK_Deposit_MethodPay" FromRole="Deposit" ToRole="MethodPay" />
+          <NavigationProperty Name="StatusPay" Relationship="Self.FK_Deposit_StatusPay" FromRole="Deposit" ToRole="StatusPay" />
+        </EntityType>
+        <EntityType Name="DiningTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hall_id" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__table_i__46E78A0C" FromRole="DiningTable" ToRole="Booking" />
+          <NavigationProperty Name="Halls" Relationship="Self.FK__DiningTab__hall___44FF419A" FromRole="DiningTable" ToRole="Halls" />
+          <NavigationProperty Name="TypeTable" Relationship="Self.FK_DiningTable_TypeTable1" FromRole="DiningTable" ToRole="TypeTable" />
+        </EntityType>
+        <EntityType Name="Halls">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="restaurant_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="has_deposit" Type="Boolean" Nullable="false" />
+          <Property Name="capacity" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="photo_url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DiningTable" Relationship="Self.FK__DiningTab__hall___44FF419A" FromRole="Halls" ToRole="DiningTable" />
+          <NavigationProperty Name="Restaurants" Relationship="Self.FK__Halls__restauran__440B1D61" FromRole="Halls" ToRole="Restaurants" />
+        </EntityType>
+        <EntityType Name="MethodPay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Deposit" Relationship="Self.FK_Deposit_MethodPay" FromRole="MethodPay" ToRole="Deposit" />
+        </EntityType>
+        <EntityType Name="Restaurants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rating" Type="Double" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="average_check" Type="Int32" />
+          <Property Name="photo_url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Halls" Relationship="Self.FK__Halls__restauran__440B1D61" FromRole="Restaurants" ToRole="Halls" />
+          <NavigationProperty Name="Waitlist" Relationship="Self.FK__Waitlist__restau__4BAC3F29" FromRole="Restaurants" ToRole="Waitlist" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__role_id__4CA06362" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK_Booking_Status" FromRole="Status" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="StatusPay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Deposit" Relationship="Self.FK_Deposit_StatusPay" FromRole="StatusPay" ToRole="Deposit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="count_sit" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DiningTable" Relationship="Self.FK_DiningTable_TypeTable1" FromRole="TypeTable" ToRole="DiningTable" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password_hash" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__user_id__45F365D3" FromRole="Users" ToRole="Booking" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Users__role_id__4CA06362" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Waitlist" Relationship="Self.FK__Waitlist__user_i__4AB81AF0" FromRole="Users" ToRole="Waitlist" />
+        </EntityType>
+        <EntityType Name="Waitlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="restaurant_id" Type="Int32" Nullable="false" />
+          <Property Name="guests_count" Type="Int32" Nullable="false" />
+          <Property Name="desired_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Restaurants" Relationship="Self.FK__Waitlist__restau__4BAC3F29" FromRole="Waitlist" ToRole="Restaurants" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Waitlist__user_i__4AB81AF0" FromRole="Waitlist" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__Booking__table_i__46E78A0C">
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiningTable">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="table_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__user_id__45F365D3">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deposit_Booking">
+          <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+          <End Role="Deposit" Type="Self.Deposit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Deposit">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deposit_MethodPay">
+          <End Role="MethodPay" Type="Self.MethodPay" Multiplicity="1" />
+          <End Role="Deposit" Type="Self.Deposit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodPay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Deposit">
+              <PropertyRef Name="method_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deposit_StatusPay">
+          <End Role="StatusPay" Type="Self.StatusPay" Multiplicity="1" />
+          <End Role="Deposit" Type="Self.Deposit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusPay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Deposit">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DiningTab__hall___44FF419A">
+          <End Role="Halls" Type="Self.Halls" Multiplicity="1" />
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Halls">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DiningTable">
+              <PropertyRef Name="hall_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiningTable_TypeTable1">
+          <End Role="TypeTable" Type="Self.TypeTable" Multiplicity="1" />
+          <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeTable">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DiningTable">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Halls__restauran__440B1D61">
+          <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="1" />
+          <End Role="Halls" Type="Self.Halls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Halls">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Waitlist__restau__4BAC3F29">
+          <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="1" />
+          <End Role="Waitlist" Type="Self.Waitlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Waitlist">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__role_id__4CA06362">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Waitlist__user_i__4AB81AF0">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Waitlist" Type="Self.Waitlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Waitlist">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ArmorBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Booking" EntityType="Self.Booking" />
+          <EntitySet Name="Deposit" EntityType="Self.Deposit" />
+          <EntitySet Name="DiningTable" EntityType="Self.DiningTable" />
+          <EntitySet Name="Halls" EntityType="Self.Halls" />
+          <EntitySet Name="MethodPay" EntityType="Self.MethodPay" />
+          <EntitySet Name="Restaurants" EntityType="Self.Restaurants" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="StatusPay" EntityType="Self.StatusPay" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TypeTable" EntityType="Self.TypeTable" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Waitlist" EntityType="Self.Waitlist" />
+          <AssociationSet Name="FK__Booking__table_i__46E78A0C" Association="Self.FK__Booking__table_i__46E78A0C">
+            <End Role="DiningTable" EntitySet="DiningTable" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__user_id__45F365D3" Association="Self.FK__Booking__user_id__45F365D3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Status" Association="Self.FK_Booking_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deposit_Booking" Association="Self.FK_Deposit_Booking">
+            <End Role="Booking" EntitySet="Booking" />
+            <End Role="Deposit" EntitySet="Deposit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deposit_MethodPay" Association="Self.FK_Deposit_MethodPay">
+            <End Role="MethodPay" EntitySet="MethodPay" />
+            <End Role="Deposit" EntitySet="Deposit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deposit_StatusPay" Association="Self.FK_Deposit_StatusPay">
+            <End Role="StatusPay" EntitySet="StatusPay" />
+            <End Role="Deposit" EntitySet="Deposit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DiningTab__hall___44FF419A" Association="Self.FK__DiningTab__hall___44FF419A">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="DiningTable" EntitySet="DiningTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiningTable_TypeTable1" Association="Self.FK_DiningTable_TypeTable1">
+            <End Role="TypeTable" EntitySet="TypeTable" />
+            <End Role="DiningTable" EntitySet="DiningTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Halls__restauran__440B1D61" Association="Self.FK__Halls__restauran__440B1D61">
+            <End Role="Restaurants" EntitySet="Restaurants" />
+            <End Role="Halls" EntitySet="Halls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Waitlist__restau__4BAC3F29" Association="Self.FK__Waitlist__restau__4BAC3F29">
+            <End Role="Restaurants" EntitySet="Restaurants" />
+            <End Role="Waitlist" EntitySet="Waitlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__role_id__4CA06362" Association="Self.FK__Users__role_id__4CA06362">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Waitlist__user_i__4AB81AF0" Association="Self.FK__Waitlist__user_i__4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Waitlist" EntitySet="Waitlist" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ArmorBaseModelContainer" CdmEntityContainer="ArmorBaseEntities">
+          <EntitySetMapping Name="Booking">
+            <EntityTypeMapping TypeName="ArmorBaseModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="table_id" ColumnName="table_id" />
+                <ScalarProperty Name="start_datatime" ColumnName="start_datatime" />
+                <ScalarProperty Name="duration_minutes" ColumnName="duration_minutes" />
+                <ScalarProperty Name="guests_count" ColumnName="guests_count" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="cancellation_reason" ColumnName="cancellation_reason" />
+                <ScalarProperty Name="cancellation_date" ColumnName="cancellation_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deposit">
+            <EntityTypeMapping TypeName="ArmorBaseModel.Deposit">
+              <MappingFragment StoreEntitySet="Deposit">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="method_id" ColumnName="method_id" />
+                <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiningTable">
+            <EntityTypeMapping TypeName="ArmorBaseModel.DiningTable">
+              <MappingFragment StoreEntitySet="DiningTable">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="hall_id" ColumnName="hall_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Halls">
+            <EntityTypeMapping TypeName="ArmorBaseModel.Halls">
+              <MappingFragment StoreEntitySet="Halls">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="has_deposit" ColumnName="has_deposit" />
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="photo_url" ColumnName="photo_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MethodPay">
+            <EntityTypeMapping TypeName="ArmorBaseModel.MethodPay">
+              <MappingFragment StoreEntitySet="MethodPay">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurants">
+            <EntityTypeMapping TypeName="ArmorBaseModel.Restaurants">
+              <MappingFragment StoreEntitySet="Restaurants">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="average_check" ColumnName="average_check" />
+                <ScalarProperty Name="photo_url" ColumnName="photo_url" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ArmorBaseModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="ArmorBaseModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusPay">
+            <EntityTypeMapping TypeName="ArmorBaseModel.StatusPay">
+              <MappingFragment StoreEntitySet="StatusPay">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ArmorBaseModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeTable">
+            <EntityTypeMapping TypeName="ArmorBaseModel.TypeTable">
+              <MappingFragment StoreEntitySet="TypeTable">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="count_sit" ColumnName="count_sit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ArmorBaseModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Waitlist">
+            <EntityTypeMapping TypeName="ArmorBaseModel.Waitlist">
+              <MappingFragment StoreEntitySet="Waitlist">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+                <ScalarProperty Name="guests_count" ColumnName="guests_count" />
+                <ScalarProperty Name="desired_datetime" ColumnName="desired_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
