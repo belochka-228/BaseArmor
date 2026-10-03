@@ -5,34 +5,33 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BaseArmor.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="800"
       Title="_2RegistrPage">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Border Background="#f6f3f3" CornerRadius="12" Padding="30" Width="370" Height="600">
+        <Border Style="{StaticResource CardBorder}" Width="370" Height="550">
             <StackPanel Width="300">
-                <TextBlock Text="Регистрация" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                <TextBlock Text="Регистрация" Style="{StaticResource HeaderText}"/>
 
-                <TextBlock Text="Ваша фамилия" Margin="0,0,0,3"/>
-                <TextBox x:Name="txtLastName" Height="28" Margin="0,0,0,10"/>
-                
-                <TextBlock Text="Ваше имя" Margin="0,0,0,3"/>
-                <TextBox x:Name="txtFirstName" Height="28" Margin="0,0,0,10"/>
+                <TextBlock Text="Ваша фамилия"/>
+                <TextBox x:Name="txtLastName"/>
 
-                <TextBlock Text="Номер телефона" Margin="0,0,0,3"/>
-                <TextBox x:Name="txtNumber" Height="28" Margin="0,0,0,10"/>
+                <TextBlock Text="Ваше имя"/>
+                <TextBox x:Name="txtFirstName"/>
 
-                <TextBlock Text="Логин" Margin="0,0,0,3"/>
-                <TextBox x:Name="txtLogin" Height="28" Margin="0,0,0,10"/>
+                <TextBlock Text="Номер телефона"/>
+                <TextBox x:Name="txtNumber"/>
 
-                <TextBlock Text="Пароль" Margin="0,0,0,3"/>
-                <PasswordBox x:Name="txtPassword" Height="28" Margin="0,0,0,10"/>
+                <TextBlock Text="Логин"/>
+                <TextBox x:Name="txtLogin"/>
 
-                <TextBlock Text="Повторите пароль" Margin="0,0,0,3"/>
-                <PasswordBox x:Name="txtPasswordConfirm" Height="28" Margin="0,0,0,20"/>
+                <TextBlock Text="Пароль"/>
+                <PasswordBox x:Name="txtPassword"/>
 
-                <Button Content="Зарегистрироваться" Height="30" Click="Register_Click" Background="#8895af" Foreground="White" />
-                <Button Content="Назад" Height="30" Click="Back_Click" Background="Transparent" Margin="0,5,0,0"/>
+                <TextBlock Text="Повторите пароль"/>
+                <PasswordBox x:Name="txtPasswordConfirm"/>
+
+                <Button Content="Зарегистрироваться" Click="Register_Click"/>
+                <Button Content="Назад" Click="Back_Click" Background="Transparent" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"/>
             </StackPanel>
         </Border>
     </Grid>

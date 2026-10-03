@@ -12,7 +12,7 @@
         <Border Style="{StaticResource CardBorder}" Width="380">
             <StackPanel Width="300">
                 <TextBlock Text="Бронирование столиков" Style="{StaticResource HeaderText}" />
-                <TextBlock Text="«Секунда»" Style="{StaticResource HeaderText}"/>
+                <TextBlock Text="«Котики вперед»" Style="{StaticResource HeaderText}"/>
 
                 <TextBlock Text="Логин"/>
                 <Grid>
@@ -27,9 +27,18 @@
                 </Grid>
 
                 <Button Content="Войти" Click="AutoButton_Click" />
-                <Button Content="Регистрация" Click="RegisterButton_Click" 
-                        Background="Transparent" Foreground="{StaticResource PrimaryBrush}"
+                <Button Content="Регистрация" Click="RegisterButton_Click"  Background="Transparent" Foreground="{StaticResource PrimaryBrush}"
                         BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"/>
+                <Button x:Name="ButtonChangePassword" Content="Смена пароля" Click="ButtonChangePassword_Click" Background="Transparent" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"/>
+
+                <TextBlock x:Name="txtCaptcha" Text="Капча:" Visibility="Hidden"/>
+                <TextBox x:Name="captcha" CommandManager.PreviewExecuted="textBox_PreviewExecuted" ContextMenu="{x:Null}" 
+                         Visibility="Hidden" Height="42" Foreground="Red" FontStyle="Italic" FontWeight="Heavy" 
+                         Background="{x:Null}" FontStretch="UltraCondensed" IsReadOnly="True" HorizontalContentAlignment="Center" 
+                         VerticalContentAlignment="Center" FontSize="20" Margin="0,5,0,5"/>
+                <TextBox x:Name="captchaInput" Visibility="Hidden" Height="34" TextWrapping="Wrap" Text=""/>
+                <Button x:Name="submitCaptcha" Content="Подтвердить" ToolTip="Подтвердить ввод капчи" Visibility="Hidden" 
+                        Click="submitCaptcha_Click"/>
             </StackPanel>
         </Border>
     </Grid>

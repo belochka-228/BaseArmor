@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,16 @@ namespace BaseArmor.Pages
         public _2RegistrPage()
         {
             InitializeComponent();
+        }
+        /// <summary>
+        /// Хеширование пароля (SHA1)
+        /// </summary>
+        public static string GetHash(string password)
+        {
+            using (var hash = SHA1.Create())
+            {
+                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
+            }
         }
         private void Register_Click(object sender, RoutedEventArgs e)
         {
@@ -52,13 +63,13 @@ namespace BaseArmor.Pages
             }
             if (Core.Context.Users.Any(u => u.phone == number))
             {
-                MessageBox.Show("Пользователь с таким email уже существует.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Пользователь с таким номером телефона уже существует.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             var newUser = new Users
             {
                 login = login,
-                password_hash = password,
+                password_hash = GetHash(password),
                 first_name = firstName,
                 last_name = lastName,
                 phone = number,

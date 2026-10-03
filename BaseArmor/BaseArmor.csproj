@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Логотип.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
       <HintPath>..\..\..\..\Desktop\cinema\bin\Debug\EntityFramework.dll</HintPath>
@@ -104,6 +107,9 @@
     </Compile>
     <Compile Include="Pages\7AdminPage.xaml.cs">
       <DependentUpon>7AdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\8ChangePassPage.xaml.cs">
+      <DependentUpon>8ChangePassPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Restaurants.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -178,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\8ChangePassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model1.Context.cs">
@@ -234,6 +244,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Логотип.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
