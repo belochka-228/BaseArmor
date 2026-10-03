@@ -25,7 +25,51 @@ namespace BaseArmor
         public MainWindow()
         {
             InitializeComponent();
+            LoadTheme();
             MainFrame.Navigate(new _1LoginPage());
+        }
+
+        /// <summary>
+        /// Загрузка темы из настроек
+        /// </summary>
+        private void LoadTheme()
+        {
+            bool isDark = Properties.Settings.Default.IsDarkTheme;
+            ApplyTheme(isDark);
+        }
+
+        /// <summary>
+        /// Применение темы
+        /// </summary>
+        private void ApplyTheme(bool isDark)
+        {
+            var uri = new Uri(isDark ? "DictionaryDark.xaml" : "Dictionary.xaml", UriKind.Relative);
+            var dict = Application.LoadComponent(uri) as ResourceDictionary;
+
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(dict);
+
+            if (ThemeButton != null)
+                ThemeButton.Content = isDark ? "☀️ Тема" : "🌙 Тема";
+        }
+        private void ThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool isDark = !Properties.Settings.Default.IsDarkTheme;
+            Properties.Settings.Default.IsDarkTheme = isDark;
+            Properties.Settings.Default.Save(); 
+
+            ApplyTheme(isDark);
+            RefreshCurrentPage();
+        }
+
+        private void RefreshCurrentPage()
+        {
+            if (MainFrame.Content is Page currentPage)
+            {
+                var type = currentPage.GetType();
+                var newPage = Activator.CreateInstance(type) as Page;
+                MainFrame.Navigate(newPage);
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -34,10 +78,10 @@ namespace BaseArmor
             MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.No)
                 e.Cancel = true;
             else
-
+            {
+                Properties.Settings.Default.Save();
                 e.Cancel = false;
+            }
         }
-
     }
-    
 }

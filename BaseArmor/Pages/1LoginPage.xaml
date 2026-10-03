@@ -9,19 +9,27 @@
       Title="_1LoginPage">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Border Background="#f6f3f3" CornerRadius="12" Padding="30" Width="380">
+        <Border Style="{StaticResource CardBorder}" Width="380">
             <StackPanel Width="300">
-                <TextBlock Text="Бронирование столиков" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5" />
-                <TextBlock Text="«Секунда»" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                <TextBlock Text="Бронирование столиков" Style="{StaticResource HeaderText}" />
+                <TextBlock Text="«Секунда»" Style="{StaticResource HeaderText}"/>
 
-                <TextBlock Text="Введите логин" FontSize="14" Margin="5,0"/>
-                <TextBox x:Name="txtUser" Margin="0,5,0,10" Height="25"/>
+                <TextBlock Text="Логин"/>
+                <Grid>
+                    <TextBox x:Name="txtUser" TextChanged="txtUser_TextChanged"/>
+                    <TextBlock x:Name="txtUserHint" Text="Введите логин" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtUserHint_MouseLeftButtonUp"/>
+                </Grid>
 
-                <TextBlock Text="Введите пароль" FontSize="14" Margin="5,0"/>
-                <PasswordBox x:Name="txtPassword" Margin="0,5,0,20" Height="25"/>
+                <TextBlock Text="Пароль"/>
+                <Grid>
+                    <PasswordBox x:Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged"/>
+                    <TextBlock x:Name="txtPasswordHint" Text="Введите пароль" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtPasswordHint_MouseLeftButtonUp"/>
+                </Grid>
 
-                <Button Content="Войти" Height="30" Click="AutoButton_Click" Background="#8895af" Foreground="White" BorderThickness="0"/>
-                <Button Content="Регистрация" Height="30" Click="RegisterButton_Click" Background="Transparent" Margin="0,5,0,0"/>
+                <Button Content="Войти" Click="AutoButton_Click" />
+                <Button Content="Регистрация" Click="RegisterButton_Click" 
+                        Background="Transparent" Foreground="{StaticResource PrimaryBrush}"
+                        BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"/>
             </StackPanel>
         </Border>
     </Grid>

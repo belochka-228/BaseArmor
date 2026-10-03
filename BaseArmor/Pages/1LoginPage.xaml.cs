@@ -52,6 +52,26 @@ namespace BaseArmor.Pages
         {
             NavigationService?.Navigate(new _2RegistrPage());
         }
+
+        private void txtUser_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtUserHint.Visibility = string.IsNullOrEmpty(txtUser.Text) ? Visibility.Visible : Visibility.Hidden;
+        }
+
+        private void txtUserHint_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            txtUser.Focus();
+        }
+
+        private void txtPasswordHint_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            txtPassword.Focus();
+        }
+
+        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtPasswordHint.Visibility = string.IsNullOrEmpty(txtPassword.Password) ? Visibility.Visible : Visibility.Hidden;
+        }
     }
 }
 
