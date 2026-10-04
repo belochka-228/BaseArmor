@@ -9,6 +9,56 @@
       Title="_3RestoranPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="400">
+            <TextBlock Text="Выбор ресторана" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
+        </Border>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" >
+            <TextBlock Text="Поиск: " Style="{StaticResource DarkText}"/>
+            <TextBox x:Name="txtSource" Width="200" TextChanged="txtSource_TextChanged"/>
+
+            <TextBlock Text="Сортировка по: " Margin="10" VerticalAlignment="Center" Style="{StaticResource DarkText}"/>
+            <ComboBox x:Name="cmbSort" Width="200" SelectionChanged="cmbSort_SelectionChanged" VerticalAlignment="Center" Height="30">
+                <ComboBoxItem>По рейтингу</ComboBoxItem>
+                <ComboBoxItem>По среднему чеку (возр)</ComboBoxItem>
+                <ComboBoxItem>По среднему чеку (умен)</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="ListRestorans">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardBorder}" Width="250">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{Binding photo_url}" Stretch="UniformToFill" Height="200"/>
+                                <TextBlock Text="{Binding name}" Style="{StaticResource HeaderText}"/>
+                                <TextBlock Text="{Binding address}"/>
+                                <TextBlock Text="{Binding rating, StringFormat= Рейтинг: {0}}"/>
+                                <TextBlock Text="{Binding average_check, StringFormat= Средний чек: {0}}"/>
+                                <TextBlock Text="{Binding description}"/>
+
+                                <Button Content="Выбрать" Click="Button_Click" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Content="Выйти из системы" Click="BtnBack_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:BaseArmor"
         mc:Ignorable="d"
         Closing="Window_Closing"
+        Background ="{DynamicResource PlaceholderBrush}"
         Title="Система онлайн-бронирования столиков 'Котики вперед'" >
     <Grid>
         <Button x:Name="ThemeButton" Content="🌙 Тема" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ThemeButton_Click"/>

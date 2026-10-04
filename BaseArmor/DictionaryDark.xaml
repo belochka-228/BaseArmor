@@ -24,6 +24,14 @@
         <Setter Property="IsHitTestVisible" Value="False"/>
         <Setter Property="FontSize" Value="13"/>
     </Style>
+    
+    <Style x:Key="DarkText" TargetType="TextBlock" 
+           BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
 
     <Style TargetType="Button">
         <Setter Property="Height" Value="35"/>
@@ -38,8 +46,6 @@
 
     <Style TargetType="TextBox">
         <Setter Property="Height" Value="30"/>
-        <Setter Property="Margin" Value="0,3,0,10"/>
-        <Setter Property="Padding" Value="8,0,0,0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Open Sans"/>
         <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
@@ -47,6 +53,12 @@
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
     </Style>
 
+    <Style TargetType="ComboBoxItem">
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        <Setter Property="Padding" Value="5"/>
+    </Style>
+    
     <Style TargetType="PasswordBox">
         <Setter Property="Height" Value="30"/>
         <Setter Property="Margin" Value="0,3,0,10"/>
@@ -62,6 +74,7 @@
         <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
         <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="Padding" Value="25"/>
+        <Setter Property="Margin" Value="10"/>
     </Style>
 
     <Style x:Key="HeaderText" TargetType="TextBlock" 
@@ -72,5 +85,4 @@
         <Setter Property="Margin" Value="0,0,0,15"/>
         <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
     </Style>
-
 </ResourceDictionary>

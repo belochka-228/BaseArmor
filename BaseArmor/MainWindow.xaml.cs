@@ -26,7 +26,7 @@ namespace BaseArmor
         {
             InitializeComponent();
             LoadTheme();
-            MainFrame.Navigate(new _1LoginPage());
+            MainFrame.Navigate(new _3RestoranPage());
         }
 
         /// <summary>
@@ -45,6 +45,7 @@ namespace BaseArmor
         {
             var uri = new Uri(isDark ? "DictionaryDark.xaml" : "Dictionary.xaml", UriKind.Relative);
             var dict = Application.LoadComponent(uri) as ResourceDictionary;
+
 
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(dict);

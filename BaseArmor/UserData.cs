@@ -11,6 +11,8 @@ namespace BaseArmor
         public static Users CurrentUser { get; set; }
         public static bool CaptchaVisible { get; set; } = false;
         public static int FailedAttempts { get; set; } = 0;
+        public static Restaurants SelectedRestaurant { get; set; }
+        public static Halls SelectedHall { get; set; }
     }
 }
  

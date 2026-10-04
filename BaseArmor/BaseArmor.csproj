@@ -96,8 +96,8 @@
     <Compile Include="Pages\3RestoranPage.xaml.cs">
       <DependentUpon>3RestoranPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\4HallsPage.xaml.cs">
-      <DependentUpon>4HallsPage.xaml</DependentUpon>
+    <Compile Include="Pages\4HallPage.xaml.cs">
+      <DependentUpon>4HallPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\5BookingPage.xaml.cs">
       <DependentUpon>5BookingPage.xaml</DependentUpon>
@@ -168,7 +168,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\4HallsPage.xaml">
+    <Page Include="Pages\4HallPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,6 +234,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\fishnet.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\pushkin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\whiterabbit.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\turandot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\twinsgarden.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
