@@ -259,6 +259,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="txt\sql.txt" />
     <Resource Include="Логотип.ico" />
   </ItemGroup>
   <ItemGroup>
