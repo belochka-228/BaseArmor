@@ -8,7 +8,82 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="_5BookingPage">
 
-    <Grid>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource CardBorder}" Width="400">
+            <TextBlock Text="Бронирование" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border Style="{StaticResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Выбранный ресторан" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtRestaurantName" Style="{StaticResource HeaderText}" FontSize="16"/>
+                        <Image x:Name="imgRestaurant" Stretch="UniformToFill" Height="180"/>
+                        <TextBlock x:Name="txtRestaurantAddress"/>
+                        <TextBlock x:Name="txtRestaurantRating"/>
+                        <TextBlock x:Name="txtRestaurantCheck"/>
+                        <TextBlock x:Name="txtRestaurantDescription" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource CardBorder}">
+                    <StackPanel>
+                        <TextBlock Text="Выбранный зал" FontWeight="Bold"/>
+                        <TextBlock x:Name="txtHallName" Style="{StaticResource HeaderText}" FontSize="16"/>
+                        <Image x:Name="imgHall" Stretch="UniformToFill" Height="180"/>
+                        <TextBlock x:Name="txtHallDeposit"/>
+                        <TextBlock x:Name="txtHallCapacity"/>
+                        <TextBlock x:Name="txtHallDescription" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource CardBorder}">
+            <StackPanel>
+                <TextBlock Text="Параметры брони" Style="{StaticResource HeaderText}" FontSize="16"/>
+
+                <TextBlock Text="Дата"/>
+                <DatePicker x:Name="dpDate"/>
+
+                <TextBlock Text="Время начала (чч:мм)"/>
+                <Grid>
+                    <TextBox x:Name="txtTime" TextChanged="txtTime_TextChanged"/>
+                    <TextBlock x:Name="txtTimeHint" Text="Например: 18:00" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtTimeHint_MouseLeftButtonUp"/>
+                </Grid>
+
+                <TextBlock Text="Длительность (мин.)"/>
+                <Grid>
+                    <TextBox x:Name="txtDuration" TextChanged="txtDuration_TextChanged"/>
+                    <TextBlock x:Name="txtDurationHint" Text="Например: 120" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtDurationHint_MouseLeftButtonUp"/>
+                </Grid>
+
+                <TextBlock Text="Количество гостей"/>
+                <Grid>
+                    <TextBox x:Name="txtGuests" TextChanged="txtGuests_TextChanged"/>
+                    <TextBlock x:Name="txtGuestsHint" Text="Например: 4" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtGuestsHint_MouseLeftButtonUp"/>
+                </Grid>
+                
+                <TextBlock Text="Комментарий (необязательно)"/>
+                <TextBox x:Name="txtComment" Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                <Button Content="Забронировать" Click="Book_Click"/>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Content="Назад к залам" Click="BtnHalls_Click"/>
+            <Button Content="Выйти из системы" Click="BtnBack_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

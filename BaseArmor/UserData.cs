@@ -13,6 +13,8 @@ namespace BaseArmor
         public static int FailedAttempts { get; set; } = 0;
         public static Restaurants SelectedRestaurant { get; set; }
         public static Halls SelectedHall { get; set; }
+        public static int RestoranSort { get; set; } = 0;
+        public static int DepositFilter { get; set; } = 0;
     }
 }
  

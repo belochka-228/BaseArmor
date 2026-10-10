@@ -38,13 +38,14 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Style="{StaticResource CardBorder}" Width="250">
+                        <Border Style="{StaticResource CardBorder}" Width="400">
                             <StackPanel Orientation="Vertical">
-                                <Image Source="{Binding photo_url}" Stretch="UniformToFill" Height="200"/>
                                 <TextBlock Text="{Binding name}" Style="{StaticResource HeaderText}"/>
+                                <Image Source="{Binding photo_url}" Stretch="UniformToFill" Height="200"/>
+                                <TextBlock Text=""/>
                                 <TextBlock Text="{Binding has_deposit, StringFormat= Депозит: {0}}"/>
                                 <TextBlock Text="{Binding capacity, StringFormat= Вместимось зала: {0}}"/>
-                                <TextBlock Text="{Binding description}"/>
+                                <TextBlock Text="{Binding description}" TextWrapping="Wrap"/>
 
                                 <Button Content="Выбрать" Click="Button_Click" />
                             </StackPanel>
@@ -52,6 +53,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            
         </ScrollViewer>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">

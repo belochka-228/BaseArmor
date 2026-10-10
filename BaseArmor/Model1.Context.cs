@@ -34,7 +34,6 @@ namespace BaseArmor
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<StatusPay> StatusPay { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeTable> TypeTable { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Waitlist> Waitlist { get; set; }

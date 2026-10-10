@@ -24,6 +24,7 @@ namespace BaseArmor.Pages
         public _3RestoranPage()
         {
             InitializeComponent();
+            cmbSort.SelectedIndex = UserData.RestoranSort;
             LoadRestorans();
         }
         private void LoadRestorans()
@@ -51,12 +52,11 @@ namespace BaseArmor.Pages
         {
             LoadRestorans();
         }
-
         private void cmbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            UserData.RestoranSort = cmbSort.SelectedIndex;
             LoadRestorans();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;

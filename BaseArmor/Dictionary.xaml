@@ -62,7 +62,7 @@
     <Style x:Key="CardBorder" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
         <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="Padding" Value="25"/>
+        <Setter Property="Padding" Value="20"/>
         <Setter Property="Margin" Value="10"/>
     </Style>
 
