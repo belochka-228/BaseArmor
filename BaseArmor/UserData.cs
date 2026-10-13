@@ -15,6 +15,7 @@ namespace BaseArmor
         public static Halls SelectedHall { get; set; }
         public static int RestoranSort { get; set; } = 0;
         public static int DepositFilter { get; set; } = 0;
+        public static Deposit CurrentDepozit { get; set; }
     }
 }
  

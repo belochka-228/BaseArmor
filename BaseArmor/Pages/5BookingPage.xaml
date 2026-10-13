@@ -29,7 +29,8 @@
                     <StackPanel>
                         <TextBlock Text="Выбранный ресторан" FontWeight="Bold"/>
                         <TextBlock x:Name="txtRestaurantName" Style="{StaticResource HeaderText}" FontSize="16"/>
-                        <Image x:Name="imgRestaurant" Stretch="UniformToFill" Height="180"/>
+                        <Image x:Name="imgRestaurant" Stretch="UniformToFill" Height="200"/>
+                        <TextBlock Text="----------------------------------------------------------------------------------------------------------------"/>
                         <TextBlock x:Name="txtRestaurantAddress"/>
                         <TextBlock x:Name="txtRestaurantRating"/>
                         <TextBlock x:Name="txtRestaurantCheck"/>
@@ -41,6 +42,7 @@
                         <TextBlock Text="Выбранный зал" FontWeight="Bold"/>
                         <TextBlock x:Name="txtHallName" Style="{StaticResource HeaderText}" FontSize="16"/>
                         <Image x:Name="imgHall" Stretch="UniformToFill" Height="180"/>
+                        <TextBlock Text="----------------------------------------------------------------------------------------------------------------"/>
                         <TextBlock x:Name="txtHallDeposit"/>
                         <TextBlock x:Name="txtHallCapacity"/>
                         <TextBlock x:Name="txtHallDescription" TextWrapping="Wrap"/>
@@ -50,32 +52,32 @@
         </ScrollViewer>
 
         <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource CardBorder}">
-            <StackPanel>
+            <StackPanel Margin="10">
                 <TextBlock Text="Параметры брони" Style="{StaticResource HeaderText}" FontSize="16"/>
 
-                <TextBlock Text="Дата"/>
+                <TextBlock Text="Дата *"/>
                 <DatePicker x:Name="dpDate"/>
 
-                <TextBlock Text="Время начала (чч:мм)"/>
+                <TextBlock Text="Время начала (чч:мм) *"/>
                 <Grid>
                     <TextBox x:Name="txtTime" TextChanged="txtTime_TextChanged"/>
                     <TextBlock x:Name="txtTimeHint" Text="Например: 18:00" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtTimeHint_MouseLeftButtonUp"/>
                 </Grid>
 
-                <TextBlock Text="Длительность (мин.)"/>
+                <TextBlock Text="Длительность (мин.) *"/>
                 <Grid>
                     <TextBox x:Name="txtDuration" TextChanged="txtDuration_TextChanged"/>
                     <TextBlock x:Name="txtDurationHint" Text="Например: 120" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtDurationHint_MouseLeftButtonUp"/>
                 </Grid>
 
-                <TextBlock Text="Количество гостей"/>
+                <TextBlock Text="Количество гостей *"/>
                 <Grid>
                     <TextBox x:Name="txtGuests" TextChanged="txtGuests_TextChanged"/>
                     <TextBlock x:Name="txtGuestsHint" Text="Например: 4" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtGuestsHint_MouseLeftButtonUp"/>
                 </Grid>
                 
                 <TextBlock Text="Комментарий (необязательно)"/>
-                <TextBox x:Name="txtComment" Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <TextBox x:Name="txtComment" Height="120" TextWrapping="Wrap" AcceptsReturn="True"/>
 
                 <Button Content="Забронировать" Click="Book_Click"/>
             </StackPanel>

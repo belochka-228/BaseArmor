@@ -1,0 +1,56 @@
+﻿<Window x:Class="BaseArmor.View._9DepozitPay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BaseArmor.View"
+        mc:Ignorable="d"
+        Title="_9DepozitPay" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="400">
+            <TextBlock Text="Оплата депозита" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource CardBorder}">
+            <StackPanel >
+                <TextBlock x:Name="txtOplata"/>
+
+                <TextBlock Text="Выберите способ оплаты: " Margin="0,5,0,7"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="rbCard" Content="Банковская карта" GroupName="MethodPay" IsChecked="True" Margin="5,0,0,0"/>
+                    <RadioButton x:Name="rbSBP" Content="СБП" GroupName="MethodPay" Margin="5,0,0,0"/>
+                </StackPanel>
+
+                <TextBlock Text="Отсканируйте QR-код для оплаты" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                <Image Source="/Images/qr.jpg" Stretch="UniformToFill" Height="200"/>
+
+               <!-- <TextBlock Text="Номер карты:"/>
+                <Grid>
+                    <TextBox x:Name="txtCardNumber" MaxLength="19" TextChanged="txtCardNumber_TextChanged"/>
+                    <TextBlock x:Name="txtCardNumberHint" Text="0000 0000 0000 0000" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtCardNumberHint_MouseLeftButtonUp"/>
+                </Grid>
+
+                <TextBlock Text="Срок действия:"/>
+                <Grid>
+                    <TextBox x:Name="txtCardDate" MaxLength="5" TextChanged="txtCardDate_TextChanged"/>
+                    <TextBlock x:Name="txtCardDateHint" Text="ММ/ГГ" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtCardDateHint_MouseLeftButtonUp"/>
+                </Grid>
+
+                <TextBlock Text="CVV:"/>
+                <Grid>
+                    <TextBox x:Name="txtCVV" MaxLength="3" TextChanged="txtCVV_TextChanged"/>
+                    <TextBlock x:Name="txtCVVHint" Text="***" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtCVVHint_MouseLeftButtonUp"/>
+                </Grid>-->
+
+                <Button Content="Оплатить" Click="Pay_Click"/>
+                <Button Content="Отменить бронь" Click="Cancel_Click" Background="Transparent" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
