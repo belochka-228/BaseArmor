@@ -58,6 +58,11 @@ namespace BaseArmor.Pages
 
             var user = Core.Context.Users.Include("Roles").FirstOrDefault(u => u.login == login && u.password_hash == hashedPassword);
 
+            if (!user.is_active)
+            {
+                MessageBox.Show("Ваш аккаунт заблокирован.");
+                return;
+            }
             if (user == null)
             {
                 MessageBox.Show("Неверный логин или пароль.");

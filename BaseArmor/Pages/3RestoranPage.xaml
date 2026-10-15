@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <Button Grid.Row="0" Content="Профиль" HorizontalAlignment="Left" Click="BtnProfil_Click"/>
         <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="400">
             <TextBlock Text="Выбор ресторана" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>

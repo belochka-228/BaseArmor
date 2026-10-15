@@ -39,10 +39,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\cinema\bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\cinema\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -122,6 +122,9 @@
     <Compile Include="Pages\8ChangePassPage.xaml.cs">
       <DependentUpon>8ChangePassPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\_9DepozitPay.xaml.cs">
+      <DependentUpon>_9DepozitPay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Restaurants.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -134,15 +137,15 @@
     <Compile Include="StatusPay.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TypeTable.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="UserData.cs" />
     <Compile Include="Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="View\_9DepozitPay.xaml.cs">
-      <DependentUpon>_9DepozitPay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Waitlist.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -199,7 +202,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\_9DepozitPay.xaml">
+    <Page Include="Pages\_9DepozitPay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,7 +245,9 @@
     <Content Include="Images\fishnet.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\qr.jpg" />
+    <Content Include="Images\qr.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

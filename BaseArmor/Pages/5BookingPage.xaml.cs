@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-using BaseArmor.View;
 
 namespace BaseArmor.Pages
 {
@@ -25,12 +24,24 @@ namespace BaseArmor.Pages
         public _5BookingPage()
         {
             InitializeComponent();
-            if(UserData.SelectedRestaurant == null || UserData.SelectedHall == null)
+            Loaded += Page_Loaded;
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (UserData.CurrentUser == null)
+            {
+                MessageBox.Show("Пользователь не авторизован. Войдите заново.");
+                NavigationService?.Navigate(new _1LoginPage());
+                return;
+            }
+
+            if (UserData.SelectedRestaurant == null || UserData.SelectedHall == null)
             {
                 MessageBox.Show("Не выбран ресторан или зал");
                 NavigationService?.Navigate(new _3RestoranPage());
                 return;
             }
+
             LoadInfo();
         }
         private void LoadInfo()
@@ -67,7 +78,7 @@ namespace BaseArmor.Pages
 
         private void txtDuration_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtDurationHint.Visibility = string.IsNullOrEmpty(txtDurationHint.Text) ? Visibility.Visible : Visibility.Collapsed;
+            txtDurationHint.Visibility = string.IsNullOrEmpty(txtDuration.Text) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void txtDurationHint_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -103,7 +114,12 @@ namespace BaseArmor.Pages
                 MessageBox.Show("Неверно введена продолжительность брони!");
                 return;
             }
-            if(!int.TryParse(txtGuests.Text, out int guest) || guest <= 0)
+            if (duration > 480)
+            {
+                MessageBox.Show("Длительность не может превышать 8 часов.");
+                return;
+            }
+            if (!int.TryParse(txtGuests.Text, out int guest) || guest <= 0)
             {
                 MessageBox.Show("Неверно введено количество гостей!");
                 return;
@@ -115,24 +131,60 @@ namespace BaseArmor.Pages
             }
 
             DateTime startDateTime = dpDate.SelectedDate.Value.Date + time;
+            DateTime endDateTime = startDateTime.AddMinutes(duration);
 
-            if(startDateTime < DateTime.Now)
+            if (startDateTime < DateTime.Now)
             {
                 MessageBox.Show("Нельзя забронировать в прошлом!");
                 return;
             }
+            var userBookings = Core.Context.Booking.Where(b => b.user_id == UserData.CurrentUser.id)
+            .Where(b => b.status_id == 1 || b.status_id == 2).ToList();
 
-            var BusyTable = Core.Context.Booking.Where(b => b.status_id != 3 && b.status_id != 4) //не отменено/завершено
-                .Where(b => b.start_datatime <= startDateTime.AddMinutes(duration)
+            var overlap = userBookings.Any(b =>
+                b.start_datatime < endDateTime && b.start_datatime.AddMinutes(b.duration_minutes) > startDateTime);
+
+            if (overlap)
+            {
+                MessageBox.Show("У вас уже есть бронь на это время. Нельзя быть в двух местах одновременно.");
+                return;
+            }
+
+            var allBooking = Core.Context.Booking.Where(b => b.status_id == 1 || b.status_id == 2).ToList();
+
+            var BusyTable = allBooking.Where(b => b.start_datatime <= endDateTime
                 && b.start_datatime.AddMinutes(b.duration_minutes) >= startDateTime)
                 .Select(b => b.table_id).ToList();
-            var table = Core.Context.DiningTable
-                .Where(t => t.hall_id == UserData.SelectedHall.id && !BusyTable.Contains(t.id))
-                .FirstOrDefault();
 
-            if(table == null)
+            var table = Core.Context.DiningTable
+            .Where(t => t.hall_id == UserData.SelectedHall.id).Where(t => !BusyTable.Contains(t.id))
+            .Where(t => t.TypeTable.count_sit == guest).Where(t => t.is_active == true).FirstOrDefault();
+
+            if (table == null)
             {
-                MessageBox.Show("Свободных столиков на это время нет в зале :(");
+                var existingWaitlist = Core.Context.Waitlist.FirstOrDefault(w => w.user_id == UserData.CurrentUser.id
+                              && w.restaurant_id == UserData.SelectedRestaurant.id
+                              && w.desired_datetime == startDateTime);
+
+                if (existingWaitlist != null)
+                {
+                    MessageBox.Show("Вы уже в листе ожидания на это время.");
+                    return;
+                }
+
+                var waitlist = new Waitlist
+                {
+                    user_id = UserData.CurrentUser.id,
+                    restaurant_id = UserData.SelectedRestaurant.id,
+                    guests_count = guest,
+                    desired_datetime = startDateTime
+                };
+
+                Core.Context.Waitlist.Add(waitlist);
+                Core.Context.SaveChanges();
+
+                MessageBox.Show("Свободных столов на это количество гостей нет. Вы добавлены в лист ожидания.");
+                NavigationService?.Navigate(new _6UseProfPage());
                 return;
             }
 
@@ -151,6 +203,7 @@ namespace BaseArmor.Pages
 
             if (UserData.SelectedHall.has_deposit)
             {
+                MessageBox.Show("Создаю депозит...");
                 var depozit = new Deposit
                 {
                     id = booking.id,

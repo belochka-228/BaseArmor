@@ -47,7 +47,7 @@ namespace BaseArmor.Pages
         private void LoadHalls()
         {
             var restik = UserData.SelectedRestaurant.id;
-            var hall = Core.Context.Halls.Where(h => h.restaurant_id == restik);
+            var hall = Core.Context.Halls.Where(h => h.restaurant_id == restik).Where(h => h.is_active == true);
 
             var searce = txtSource.Text.Trim().ToLower();
             if(!string.IsNullOrWhiteSpace(searce) ) 
