@@ -30,7 +30,6 @@
                         <TextBlock Text="Выбранный ресторан" FontWeight="Bold"/>
                         <TextBlock x:Name="txtRestaurantName" Style="{StaticResource HeaderText}" FontSize="16"/>
                         <Image x:Name="imgRestaurant" Stretch="UniformToFill" Height="200"/>
-                        <TextBlock Text="----------------------------------------------------------------------------------------------------------------"/>
                         <TextBlock x:Name="txtRestaurantAddress"/>
                         <TextBlock x:Name="txtRestaurantRating"/>
                         <TextBlock x:Name="txtRestaurantCheck"/>
@@ -42,7 +41,6 @@
                         <TextBlock Text="Выбранный зал" FontWeight="Bold"/>
                         <TextBlock x:Name="txtHallName" Style="{StaticResource HeaderText}" FontSize="16"/>
                         <Image x:Name="imgHall" Stretch="UniformToFill" Height="180"/>
-                        <TextBlock Text="----------------------------------------------------------------------------------------------------------------"/>
                         <TextBlock x:Name="txtHallDeposit"/>
                         <TextBlock x:Name="txtHallCapacity"/>
                         <TextBlock x:Name="txtHallDescription" TextWrapping="Wrap"/>
@@ -77,9 +75,20 @@
                 </Grid>
                 
                 <TextBlock Text="Комментарий (необязательно)"/>
-                <TextBox x:Name="txtComment" Height="120" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <TextBox x:Name="txtComment" Height="120" TextWrapping="Wrap"/>
 
-                <Button Content="Забронировать" Click="Book_Click"/>
+                <Button Content="Найти свободные столики" HorizontalAlignment="Right" Height="25" Click="BtnPoiskStolikov_Click"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="0,10,5,0">
+                    <TextBlock Text="Свободных столиков -> "/>
+                    <TextBox x:Name="SvobodStol"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="Забронировать" Click="Book_Click" Width="110"/>
+                    <Button Content="Отменить" Click="OtmenaBroni_Click" Width="110"/>
+                </StackPanel>
+                
+
             </StackPanel>
         </Border>
 

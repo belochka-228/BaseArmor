@@ -21,6 +21,7 @@ namespace BaseArmor.Pages
     /// </summary>
     public partial class _5BookingPage : Page
     {
+        private DiningTable svobodstol = null;
         public _5BookingPage()
         {
             InitializeComponent();
@@ -98,100 +99,24 @@ namespace BaseArmor.Pages
 
         private void Book_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(txtTime.Text) || dpDate.SelectedDate == null || string.IsNullOrWhiteSpace(txtDuration.Text)
-                || string.IsNullOrWhiteSpace(txtGuests.Text))
+            if (svobodstol == null)
             {
-                MessageBox.Show("Заполните все поля!");
+                MessageBox.Show("Сначала нажмите «Найти свободные столики».");
                 return;
             }
-            if(!TimeSpan.TryParse(txtTime.Text, out TimeSpan time))
+
+            if (!TimeSpan.TryParse(txtTime.Text, out TimeSpan time) || !int.TryParse(txtDuration.Text, out int duration) || !int.TryParse(txtGuests.Text, out int guest))
             {
-                MessageBox.Show("Неверный формат времени, пример 18:00");
-                return;
-            }
-            if(!int.TryParse(txtDuration.Text, out int duration) || duration <= 0)
-            {
-                MessageBox.Show("Неверно введена продолжительность брони!");
-                return;
-            }
-            if (duration > 480)
-            {
-                MessageBox.Show("Длительность не может превышать 8 часов.");
-                return;
-            }
-            if (!int.TryParse(txtGuests.Text, out int guest) || guest <= 0)
-            {
-                MessageBox.Show("Неверно введено количество гостей!");
-                return;
-            }
-            if(UserData.SelectedHall.capacity.HasValue && guest > UserData.SelectedHall.capacity.Value)
-            {
-                MessageBox.Show($"Зал вмещает не более {UserData.SelectedHall.capacity} человек!");
+                MessageBox.Show("Проверьте заполнение полей.");
                 return;
             }
 
             DateTime startDateTime = dpDate.SelectedDate.Value.Date + time;
-            DateTime endDateTime = startDateTime.AddMinutes(duration);
-
-            if (startDateTime < DateTime.Now)
-            {
-                MessageBox.Show("Нельзя забронировать в прошлом!");
-                return;
-            }
-            var userBookings = Core.Context.Booking.Where(b => b.user_id == UserData.CurrentUser.id)
-            .Where(b => b.status_id == 1 || b.status_id == 2).ToList();
-
-            var overlap = userBookings.Any(b =>
-                b.start_datatime < endDateTime && b.start_datatime.AddMinutes(b.duration_minutes) > startDateTime);
-
-            if (overlap)
-            {
-                MessageBox.Show("У вас уже есть бронь на это время. Нельзя быть в двух местах одновременно.");
-                return;
-            }
-
-            var allBooking = Core.Context.Booking.Where(b => b.status_id == 1 || b.status_id == 2).ToList();
-
-            var BusyTable = allBooking.Where(b => b.start_datatime <= endDateTime
-                && b.start_datatime.AddMinutes(b.duration_minutes) >= startDateTime)
-                .Select(b => b.table_id).ToList();
-
-            var table = Core.Context.DiningTable
-            .Where(t => t.hall_id == UserData.SelectedHall.id).Where(t => !BusyTable.Contains(t.id))
-            .Where(t => t.TypeTable.count_sit == guest).Where(t => t.is_active == true).FirstOrDefault();
-
-            if (table == null)
-            {
-                var existingWaitlist = Core.Context.Waitlist.FirstOrDefault(w => w.user_id == UserData.CurrentUser.id
-                              && w.restaurant_id == UserData.SelectedRestaurant.id
-                              && w.desired_datetime == startDateTime);
-
-                if (existingWaitlist != null)
-                {
-                    MessageBox.Show("Вы уже в листе ожидания на это время.");
-                    return;
-                }
-
-                var waitlist = new Waitlist
-                {
-                    user_id = UserData.CurrentUser.id,
-                    restaurant_id = UserData.SelectedRestaurant.id,
-                    guests_count = guest,
-                    desired_datetime = startDateTime
-                };
-
-                Core.Context.Waitlist.Add(waitlist);
-                Core.Context.SaveChanges();
-
-                MessageBox.Show("Свободных столов на это количество гостей нет. Вы добавлены в лист ожидания.");
-                NavigationService?.Navigate(new _6UseProfPage());
-                return;
-            }
 
             var booking = new Booking
             {
                 user_id = UserData.CurrentUser.id,
-                table_id = table.id,
+                table_id = svobodstol.id,
                 start_datatime = startDateTime,
                 duration_minutes = duration,
                 guests_count = guest,
@@ -203,7 +128,6 @@ namespace BaseArmor.Pages
 
             if (UserData.SelectedHall.has_deposit)
             {
-                MessageBox.Show("Создаю депозит...");
                 var depozit = new Deposit
                 {
                     id = booking.id,
@@ -238,6 +162,87 @@ namespace BaseArmor.Pages
             UserData.SelectedHall = null;
             UserData.CurrentUser = null;
             NavigationService?.Navigate(new _1LoginPage());
+        }
+
+        private void BtnPoiskStolikov_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTime.Text) || dpDate.SelectedDate == null ||
+        string.IsNullOrWhiteSpace(txtDuration.Text) || string.IsNullOrWhiteSpace(txtGuests.Text))
+            {
+                MessageBox.Show("Заполните дату, время, длительность и количество гостей!");
+                return;
+            }
+            if (!TimeSpan.TryParse(txtTime.Text, out TimeSpan time))
+            {
+                MessageBox.Show("Неверный формат времени, пример 18:00");
+                return;
+            }
+            if (!int.TryParse(txtDuration.Text, out int duration) || duration <= 0)
+            {
+                MessageBox.Show("Неверно введена продолжительность брони!");
+                return;
+            }
+            if (!int.TryParse(txtGuests.Text, out int guest) || guest <= 0)
+            {
+                MessageBox.Show("Неверно введено количество гостей!");
+                return;
+            }
+            if (UserData.SelectedHall.capacity.HasValue && guest > UserData.SelectedHall.capacity.Value)
+            {
+                MessageBox.Show($"Зал вмещает не более {UserData.SelectedHall.capacity} человек!");
+                return;
+            }
+            DateTime startDateTime = dpDate.SelectedDate.Value.Date + time;
+            DateTime endDateTime = startDateTime.AddMinutes(duration);
+
+            if (startDateTime < DateTime.Now)
+            {
+                MessageBox.Show("Нельзя забронировать в прошлом!");
+                return;
+            }
+
+            var userBookings = Core.Context.Booking.Where(b => b.user_id == UserData.CurrentUser.id)
+            .Where(b => b.status_id == 1 || b.status_id == 2).ToList();
+
+            var overlap = userBookings.Any(b => b.start_datatime < endDateTime &&
+                b.start_datatime.AddMinutes(b.duration_minutes) > startDateTime);
+
+            if (overlap)
+            {
+                MessageBox.Show("У вас уже есть бронь на это время. Нельзя быть в двух местах одновременно.");
+                return;
+            }
+
+            var allBooking = Core.Context.Booking.Where(b => b.status_id == 1 || b.status_id == 2).ToList();
+            var busyTableIds = allBooking.Where(b => b.start_datatime <= endDateTime
+                         && b.start_datatime.AddMinutes(b.duration_minutes) >= startDateTime).Select(b => b.table_id).ToList();
+
+            var availableTables = Core.Context.DiningTable.Where(t => t.hall_id == UserData.SelectedHall.id)
+                .Where(t => !busyTableIds.Contains(t.id)).Where(t => t.TypeTable.count_sit == guest)
+                .Where(t => t.is_active == true).ToList();
+
+            SvobodStol.Text = availableTables.Count.ToString();
+
+            if (availableTables.Count > 0)
+            {
+                svobodstol = availableTables.First();
+                MessageBox.Show($"Найдено {availableTables.Count} свободных столов. Можно бронировать.");
+            }
+            else
+            {
+                svobodstol = null;
+                MessageBox.Show("Свободных столов нет. Нажмите «Забронировать» — добавим в лист ожидания.");
+            }
+        }
+
+        private void OtmenaBroni_Click(object sender, RoutedEventArgs e)
+        {
+            svobodstol = null;
+            SvobodStol.Text = "";
+            MessageBox.Show("Поиск сброшен.");
+            UserData.SelectedRestaurant = null;
+            UserData.SelectedHall = null;
+            NavigationService?.Navigate(new _3RestoranPage());
         }
     }
 }

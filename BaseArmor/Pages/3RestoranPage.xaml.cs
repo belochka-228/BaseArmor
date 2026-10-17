@@ -74,7 +74,7 @@ namespace BaseArmor.Pages
 
         private void BtnProfil_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new _1LoginPage());
+            NavigationService?.Navigate(new _6UseProfPage());
         }
     }
 }

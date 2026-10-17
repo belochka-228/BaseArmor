@@ -53,7 +53,7 @@
 
                 <StackPanel x:Name="PanelQR" Margin="0,15,0,0" Visibility="Collapsed">
                     <TextBlock Text="Отсканируйте QR-код для оплаты" HorizontalAlignment="Center"/>
-                    <Image Source="/Images/qr.jpg" Stretch="Uniform" Height="200" HorizontalAlignment="Center"/>
+                    <Image Source="/Images/qrcode_github.com.png" Stretch="Uniform" Height="200" HorizontalAlignment="Center"/>
                 </StackPanel>
 
                 <Button Content="Оплатить" Click="Pay_Click"/>

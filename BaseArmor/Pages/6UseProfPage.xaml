@@ -9,6 +9,103 @@
       Title="_6UseProfPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="400">
+            <TextBlock Text="Личный кабинет" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
+        </Border>
+
+        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,5,0,5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Margin="15,0">
+                    <TextBlock Text="ФИО:" FontWeight="Bold"/>
+                    <TextBlock x:Name="txtFIO"/>
+                </StackPanel>
+                <StackPanel Margin="15,0">
+                    <TextBlock Text="Телефон:" FontWeight="Bold"/>
+                    <TextBlock x:Name="txtPhone"/>
+                </StackPanel>
+                <StackPanel Margin="15,0">
+                    <TextBlock Text="Логин:" FontWeight="Bold"/>
+                    <TextBlock x:Name="txtLogin"/>
+                </StackPanel>
+                <StackPanel Margin="15,0">
+                    <TextBlock Text="Роль:" FontWeight="Bold"/>
+                    <TextBlock x:Name="txtRole"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Style="{StaticResource CardBorder}" Margin="0,5,0,5">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Мои брони" Style="{StaticResource HeaderText}" FontSize="16"/>
+
+                    <ScrollViewer>
+                        <ItemsControl x:Name="LstMyBroni">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource CardBorder}" Margin="5">
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding DiningTable.Halls.Restaurants.name, StringFormat=Ресторан: {0}}"/>
+                                                <TextBlock Text="{Binding DiningTable.Halls.name, StringFormat=Зал: {0}}"/>
+                                                <TextBlock Text="{Binding DiningTable.id, StringFormat=Столик: {0}}"/>
+                                                <TextBlock Text="{Binding start_datetime, StringFormat=Дата брони: {0}}"/>
+                                                <TextBlock Text="{Binding quest_count, StringFormat=Количество гостей: {0}}"/>
+                                                <TextBlock Text="{Binding Status.name, StringFormat=Статус: {0}}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                                                <Button Content="Отменить" Click="BtnOtmenaBroni_Click" Height="20"/>
+                                            </StackPanel>
+                                            
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" Style="{StaticResource CardBorder}" Margin="0,5,0,5">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Мои ожидания" Style="{StaticResource HeaderText}" FontSize="16"/>
+
+                    <ScrollViewer>
+                        <ItemsControl x:Name="LstMyExpectations">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource CardBorder}" Margin="5">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding Restaurants.name, StringFormat=Ресторан: {0}}"/>
+                                            <TextBlock Text="{Binding Halls.name, StringFormat=Зал: {0}}"/>
+                                            <TextBlock Text="{Binding desired_datetime, StringFormat=Желаемая дата: {0}}"/>
+                                            <TextBlock Text="{Binding quest_count, StringFormat=Количество гостей: {0}}"/>
+
+                                            <Button Content="Удалить из ожидания" Click="RemoveWaitlist_Click"/>
+                                            <TextBlock x:Name="lblStatus" FontWeight="Bold"/>
+
+                                            <Button x:Name="btnBook" Content="Забронировать" Click="BookFromWaitlist_Click" Loaded="btnBook_Loaded"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Content="Новая бронь" Click="BtnRest_Click"/>
+            <Button Content="Выйти из системы" Click="BtnBack_Click"/>
+        </StackPanel>
     </Grid>
 </Page>
