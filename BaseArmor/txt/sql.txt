@@ -1,6 +1,6 @@
 ﻿USE [ArmorBase]
 GO
-/****** Object:  Table [dbo].[Booking]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[Booking]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22,13 +22,13 @@ CREATE TABLE [dbo].[Booking](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Deposit]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[Deposit]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Deposit](
-	[id] [int] IDENTITY(1,1) NOT NULL,
+	[id] [int] NOT NULL,
 	[amount] [decimal](10, 2) NOT NULL,
 	[status_id] [int] NOT NULL,
 	[method_id] [int] NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE [dbo].[Deposit](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DiningTable]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[DiningTable]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -55,7 +55,7 @@ CREATE TABLE [dbo].[DiningTable](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Halls]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[Halls]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -75,7 +75,7 @@ CREATE TABLE [dbo].[Halls](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MethodPay]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[MethodPay]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -89,7 +89,7 @@ CREATE TABLE [dbo].[MethodPay](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Restaurants]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[Restaurants]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +108,7 @@ CREATE TABLE [dbo].[Restaurants](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -122,7 +122,7 @@ CREATE TABLE [dbo].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Status]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[Status]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -136,7 +136,7 @@ CREATE TABLE [dbo].[Status](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[StatusPay]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[StatusPay]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -150,7 +150,7 @@ CREATE TABLE [dbo].[StatusPay](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TypeTable]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[TypeTable]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -165,7 +165,7 @@ CREATE TABLE [dbo].[TypeTable](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -185,7 +185,7 @@ CREATE TABLE [dbo].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Waitlist]    Script Date: 10.10.2026 0:21:53 ******/
+/****** Object:  Table [dbo].[Waitlist]    Script Date: 17.10.2026 7:42:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -214,13 +214,10 @@ INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration
 INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (8, 3, 34, CAST(N'2026-10-17T19:30:00.000' AS DateTime), 120, 4, 4, NULL, N'Не пришёл', CAST(N'2026-10-17T21:00:00.000' AS DateTime))
 SET IDENTITY_INSERT [dbo].[Booking] OFF
 GO
-SET IDENTITY_INSERT [dbo].[Deposit] ON 
-
 INSERT [dbo].[Deposit] ([id], [amount], [status_id], [method_id], [payment_date]) VALUES (1, CAST(1500.00 AS Decimal(10, 2)), 2, 1, CAST(N'2026-10-08T12:30:00.000' AS DateTime))
 INSERT [dbo].[Deposit] ([id], [amount], [status_id], [method_id], [payment_date]) VALUES (2, CAST(2000.00 AS Decimal(10, 2)), 2, 3, CAST(N'2026-10-09T15:10:00.000' AS DateTime))
 INSERT [dbo].[Deposit] ([id], [amount], [status_id], [method_id], [payment_date]) VALUES (3, CAST(2500.00 AS Decimal(10, 2)), 1, 1, CAST(N'2026-10-10T18:45:00.000' AS DateTime))
 INSERT [dbo].[Deposit] ([id], [amount], [status_id], [method_id], [payment_date]) VALUES (4, CAST(1000.00 AS Decimal(10, 2)), 2, 2, CAST(N'2026-10-12T11:00:00.000' AS DateTime))
-SET IDENTITY_INSERT [dbo].[Deposit] OFF
 GO
 SET IDENTITY_INSERT [dbo].[DiningTable] ON 
 
@@ -321,6 +318,7 @@ INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [
 INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active]) VALUES (2, 2, N'client1', N'hash_client_1', N'Елена', N'Иванова', N'+79000000002', 1)
 INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active]) VALUES (3, 2, N'client2', N'hash_client_2', N'Сергей', N'Соколов', N'+79000000003', 1)
 INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active]) VALUES (4, 2, N'йцуке', N'BA85704A5462BC95629B454DF9AD5E4504CCF411', N'мяу', N'мяу', N'34567890987', 1)
+INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active]) VALUES (5, 2, N'SPKrokhmal', N'DCBBC60B6CCF83A41843B7009DE6EE0211A57721', N'София', N'Крохмаль', N'89880509170', 1)
 SET IDENTITY_INSERT [dbo].[Users] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Waitlist] ON 
@@ -333,7 +331,7 @@ SET IDENTITY_INSERT [dbo].[Waitlist] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UQ__Users__7838F2720C9AF994]    Script Date: 10.10.2026 0:21:54 ******/
+/****** Object:  Index [UQ__Users__7838F2720C9AF994]    Script Date: 17.10.2026 7:42:01 ******/
 ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [UQ__Users__7838F2720C9AF994] UNIQUE NONCLUSTERED 
 (
 	[login] ASC
@@ -341,7 +339,7 @@ ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [UQ__Users__7838F2720C9AF994] UNIQUE N
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UQ__Users__B43B145FF2DF23B5]    Script Date: 10.10.2026 0:21:54 ******/
+/****** Object:  Index [UQ__Users__B43B145FF2DF23B5]    Script Date: 17.10.2026 7:42:01 ******/
 ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [UQ__Users__B43B145FF2DF23B5] UNIQUE NONCLUSTERED 
 (
 	[phone] ASC
