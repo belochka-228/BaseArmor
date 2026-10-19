@@ -70,6 +70,7 @@ namespace BaseArmor.Pages
             {
                 w.CanBook = CheckAvailableTables(w);
             }
+            LstMyExpectations.ItemsSource = null;
             LstMyExpectations.ItemsSource = waitlist;
         }
 
