@@ -84,7 +84,7 @@
                     <TextBox x:Name="SvobodStol"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Забронировать" Click="Book_Click" Width="110"/>
+                    <Button x:Name="btnBook" Content="Забронировать" Click="Book_Click" Width="110"/>
                     <Button Content="Отменить" Click="OtmenaBroni_Click" Width="110"/>
                 </StackPanel>
                 

@@ -99,9 +99,9 @@ namespace BaseArmor.Pages
 
         private void Book_Click(object sender, RoutedEventArgs e)
         {
-            if (svobodstol == null)
+            if (string.IsNullOrWhiteSpace(txtTime.Text) || dpDate.SelectedDate == null || string.IsNullOrWhiteSpace(txtDuration.Text) || string.IsNullOrWhiteSpace(txtGuests.Text))
             {
-                MessageBox.Show("Сначала нажмите «Найти свободные столики».");
+                MessageBox.Show("Заполните все поля!");
                 return;
             }
 
@@ -113,42 +113,67 @@ namespace BaseArmor.Pages
 
             DateTime startDateTime = dpDate.SelectedDate.Value.Date + time;
 
-            var booking = new Booking
+            if (svobodstol != null)
             {
-                user_id = UserData.CurrentUser.id,
-                table_id = svobodstol.id,
-                start_datatime = startDateTime,
-                duration_minutes = duration,
-                guests_count = guest,
-                status_id = 1,
-                comment = txtComment.Text
-            };
-            Core.Context.Booking.Add(booking);
-            Core.Context.SaveChanges();
-
-            if (UserData.SelectedHall.has_deposit)
-            {
-                var depozit = new Deposit
+                var booking = new Booking
                 {
-                    id = booking.id,
-                    amount = 1500,
+                    user_id = UserData.CurrentUser.id,
+                    table_id = svobodstol.id,
+                    start_datatime = startDateTime,
+                    duration_minutes = duration,
+                    guests_count = guest,
                     status_id = 1,
-                    method_id = 1,
-                    payment_date = DateTime.Now
+                    comment = txtComment.Text
                 };
-                Core.Context.Deposit.Add(depozit);
+                Core.Context.Booking.Add(booking);
                 Core.Context.SaveChanges();
 
-                UserData.CurrentDepozit = depozit;
+                if (UserData.SelectedHall.has_deposit)
+                {
+                    var depozit = new Deposit
+                    {
+                        id = booking.id,
+                        amount = 1500,
+                        status_id = 1,
+                        method_id = 1,
+                        payment_date = DateTime.Now
+                    };
+                    Core.Context.Deposit.Add(depozit);
+                    Core.Context.SaveChanges();
 
-                MessageBox.Show("Бронь успешно создана, требуется оплата депозита!");
-                NavigationService?.Navigate(new _9DepozitPay());
+                    UserData.CurrentDepozit = depozit;
+
+                    MessageBox.Show("Бронь успешно создана, требуется оплата депозита!");
+                    NavigationService?.Navigate(new _9DepozitPay());
+                }
+                else
+                {
+                    MessageBox.Show("Бронь успешно создана!");
+                    NavigationService?.Navigate(new _6UseProfPage());
+                }
+                return;
             }
-            else
+            var existingWaitlist = Core.Context.Waitlist.FirstOrDefault(w => w.user_id == UserData.CurrentUser.id
+                          && w.restaurant_id == UserData.SelectedRestaurant.id && w.desired_datetime == startDateTime);
+
+            if (existingWaitlist != null)
             {
-                MessageBox.Show("Бронь успешно создана!");
-                NavigationService?.Navigate(new _6UseProfPage());
+                MessageBox.Show("Вы уже в листе ожидания на это время.");
+                return;
             }
+
+            var waitlist = new Waitlist
+            {
+                user_id = UserData.CurrentUser.id,
+                restaurant_id = UserData.SelectedRestaurant.id,
+                guests_count = guest,
+                desired_datetime = startDateTime
+            };
+            Core.Context.Waitlist.Add(waitlist);
+            Core.Context.SaveChanges();
+
+            MessageBox.Show("Вы добавлены в лист ожидания.");
+            NavigationService?.Navigate(new _6UseProfPage());
         }
         private void BtnHalls_Click(object sender, RoutedEventArgs e)
         {
@@ -166,8 +191,7 @@ namespace BaseArmor.Pages
 
         private void BtnPoiskStolikov_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTime.Text) || dpDate.SelectedDate == null ||
-        string.IsNullOrWhiteSpace(txtDuration.Text) || string.IsNullOrWhiteSpace(txtGuests.Text))
+            if (string.IsNullOrWhiteSpace(txtTime.Text) || dpDate.SelectedDate == null || string.IsNullOrWhiteSpace(txtDuration.Text) || string.IsNullOrWhiteSpace(txtGuests.Text))
             {
                 MessageBox.Show("Заполните дату, время, длительность и количество гостей!");
                 return;
@@ -201,11 +225,8 @@ namespace BaseArmor.Pages
                 return;
             }
 
-            var userBookings = Core.Context.Booking.Where(b => b.user_id == UserData.CurrentUser.id)
-            .Where(b => b.status_id == 1 || b.status_id == 2).ToList();
-
-            var overlap = userBookings.Any(b => b.start_datatime < endDateTime &&
-                b.start_datatime.AddMinutes(b.duration_minutes) > startDateTime);
+            var userBookings = Core.Context.Booking.Where(b => b.user_id == UserData.CurrentUser.id).Where(b => b.status_id == 1 || b.status_id == 2).ToList();
+            var overlap = userBookings.Any(b => b.start_datatime < endDateTime && b.start_datatime.AddMinutes(b.duration_minutes) > startDateTime);
 
             if (overlap)
             {
@@ -226,12 +247,14 @@ namespace BaseArmor.Pages
             if (availableTables.Count > 0)
             {
                 svobodstol = availableTables.First();
+                btnBook.Content = "Забронировать";
                 MessageBox.Show($"Найдено {availableTables.Count} свободных столов. Можно бронировать.");
             }
             else
             {
                 svobodstol = null;
-                MessageBox.Show("Свободных столов нет. Нажмите «Забронировать» — добавим в лист ожидания.");
+                btnBook.Content = "В лист ожидания";
+                MessageBox.Show("Свободных столов нет. Нажмите «В лист ожидания» — как появится столик, будет отображено в профиле.");
             }
         }
 

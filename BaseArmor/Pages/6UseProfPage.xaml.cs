@@ -66,6 +66,10 @@ namespace BaseArmor.Pages
         private void LoadWaitlist()
         {
             var waitlist = Core.Context.Waitlist.Where(w => w.user_id == UserData.CurrentUser.id).OrderByDescending(w => w.desired_datetime).ToList();
+            foreach (var w in waitlist)
+            {
+                w.CanBook = CheckAvailableTables(w);
+            }
             LstMyExpectations.ItemsSource = waitlist;
         }
 
@@ -96,6 +100,7 @@ namespace BaseArmor.Pages
 
                 MessageBox.Show("Бронь отменена.");
                 LoadBookings();
+                LoadWaitlist();
             }
         }
 
@@ -123,76 +128,57 @@ namespace BaseArmor.Pages
                 LoadWaitlist();
             }
         }
-        //private void btnBook_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    var button = sender as Button;
-        //    var waitlist = button.DataContext as Waitlist;
-        //    if (waitlist == null) return;
+        private bool CheckAvailableTables(Waitlist w)
+        {
+            var start = w.desired_datetime;
+            var end = start.AddMinutes(120);
 
-        //    bool hasTable = CheckAvailableTables(waitlist);
+            var allBooking = Core.Context.Booking.Where(b => b.status_id == 1 || b.status_id == 2).ToList();
+            var busyTableIds = allBooking.Where(b => b.start_datatime <= end && b.start_datatime.AddMinutes(b.duration_minutes) >= start).Select(b => b.table_id).ToList();
+            var table = Core.Context.DiningTable.Where(t => t.is_active == true).Where(t => !busyTableIds.Contains(t.id))
+                .Where(t => t.TypeTable.count_sit == w.guests_count).Where(t => t.Halls.restaurant_id == w.restaurant_id).FirstOrDefault();
 
-        //    button.Visibility = hasTable ? Visibility.Visible : Visibility.Collapsed;
+            return table != null;
+        }
+        private void BookFromWaitlist_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var waitlist = button.DataContext as Waitlist;
+            if (waitlist == null) return;
 
-        //    var stackPanel = button.Parent as StackPanel;
-        //    var lblStatus = stackPanel?.Children.OfType<TextBlock>().FirstOrDefault(t => t.Name == "lblStatus");
+            var start = waitlist.desired_datetime;
+            var end = start.AddMinutes(120);
 
-        //    if (lblStatus != null)
-        //    {
-        //        lblStatus.Text = hasTable ? "Свободные столики появились!" : "Свободных столов нет";
-        //        lblStatus.Foreground = hasTable ? Brushes.Green : Brushes.Red;
-        //    }
-        //}
-        //private bool CheckAvailableTables(Waitlist w)
-        //{
-        //    var start = w.desired_datetime;
-        //    var end = start.AddMinutes(120);
+            var allBooking = Core.Context.Booking.Where(b => b.status_id == 1 || b.status_id == 2).ToList();
+            var busyTableIds = allBooking.Where(b => b.start_datatime <= end
+                         && b.start_datatime.AddMinutes(b.duration_minutes) >= start).Select(b => b.table_id).ToList();
+            var table = Core.Context.DiningTable.Where(t => t.is_active == true).Where(t => !busyTableIds.Contains(t.id))
+                .Where(t => t.TypeTable.count_sit == waitlist.guests_count).Where(t => t.Halls.restaurant_id == waitlist.restaurant_id).FirstOrDefault();
 
-        //    var busyTableIds = Core.Context.Booking.Where(b => b.status_id == 1 || b.status_id == 2).Where(b => b.start_datatime <= end
-        //                 && b.start_datatime.AddMinutes(b.duration_minutes) >= start).Select(b => b.table_id).ToList();
-        //    var table = Core.Context.DiningTable.Where(t => t.is_active == true).Where(t => !busyTableIds.Contains(t.id))
-        //        .Where(t => t.TypeTable.count_sit == w.guests_count).Where(t => t.Halls.restaurant_id == w.restaurant_id).FirstOrDefault();
+            if (table == null)
+            {
+                MessageBox.Show("Свободных столов нет.");
+                return;
+            }
 
-        //    return table != null;
-        //}
-        //private void BookFromWaitlist_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var button = sender as Button;
-        //    var waitlist = button.DataContext as Waitlist;
-        //    if (waitlist == null) return;
+            var booking = new Booking
+            {
+                user_id = UserData.CurrentUser.id,
+                table_id = table.id,
+                start_datatime = start,
+                duration_minutes = 120,
+                guests_count = waitlist.guests_count,
+                status_id = 1
+            };
+            Core.Context.Booking.Add(booking);
 
-        //    var start = waitlist.desired_datetime;
-        //    var end = start.AddMinutes(120);
+            Core.Context.Waitlist.Remove(waitlist);
+            Core.Context.SaveChanges();
 
-        //    var busyTableIds = Core.Context.Booking.Where(b => b.status_id == 1 || b.status_id == 2).Where(b => b.start_datatime <= end
-        //                 && b.start_datatime.AddMinutes(b.duration_minutes) >= start).Select(b => b.table_id).ToList();
-
-        //    var table = Core.Context.DiningTable.Where(t => t.is_active == true).Where(t => !busyTableIds.Contains(t.id))
-        //        .Where(t => t.TypeTable.count_sit == waitlist.guests_count).Where(t => t.Halls.restaurant_id == waitlist.restaurant_id).FirstOrDefault();
-
-        //    if (table == null)
-        //    {
-        //        MessageBox.Show("Свободных столов нет.");
-        //        return;
-        //    }
-
-        //    var booking = new Booking
-        //    {
-        //        user_id = UserData.CurrentUser.id,
-        //        table_id = table.id,
-        //        start_datatime = start,
-        //        duration_minutes = 120,
-        //        guests_count = waitlist.guests_count,
-        //        status_id = 1
-        //    };
-        //    Core.Context.Booking.Add(booking);
-
-        //    Core.Context.Waitlist.Remove(waitlist);
-        //    Core.Context.SaveChanges();
-
-        //    MessageBox.Show("Бронь создана из листа ожидания!");
-        //    LoadBookings();
-        //    LoadWaitlist();
-        //}
+            MessageBox.Show("Бронь создана из листа ожидания!");
+            LoadBookings();
+            LoadWaitlist();
+        }
         private void BtnRest_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new _3RestoranPage());
