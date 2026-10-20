@@ -23,19 +23,19 @@
 
         <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,5,0,5">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <StackPanel Margin="15,0">
+                <StackPanel Margin="30,0">
                     <TextBlock Text="ФИО:" FontWeight="Bold"/>
                     <TextBlock x:Name="txtFIO"/>
                 </StackPanel>
-                <StackPanel Margin="15,0">
+                <StackPanel Margin="30,0">
                     <TextBlock Text="Телефон:" FontWeight="Bold"/>
                     <TextBlock x:Name="txtPhone"/>
                 </StackPanel>
-                <StackPanel Margin="15,0">
+                <StackPanel Margin="30,0">
                     <TextBlock Text="Логин:" FontWeight="Bold"/>
                     <TextBlock x:Name="txtLogin"/>
                 </StackPanel>
-                <StackPanel Margin="15,0">
+                <StackPanel Margin="30,0">
                     <TextBlock Text="Роль:" FontWeight="Bold"/>
                     <TextBlock x:Name="txtRole"/>
                 </StackPanel>
@@ -47,97 +47,93 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Style="{StaticResource CardBorder}" Margin="0,5,0,5">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Мои брони" Style="{StaticResource HeaderText}" FontSize="16"/>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="Мои брони" Style="{StaticResource HeaderText}" FontSize="25"/>
+                <ScrollViewer>
+                    <ItemsControl x:Name="LstMyBroni" Cursor="">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource CardBorder}" Margin="5" BorderThickness="1">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
+                                            <TextBlock Text="{Binding DiningTable.Halls.Restaurants.name, StringFormat=Ресторан: {0}}"/>
+                                            <TextBlock Text="{Binding DiningTable.Halls.name, StringFormat=Зал: {0}}"/>
+                                            <TextBlock Text="{Binding DiningTable.id, StringFormat=Столик: {0}}"/>
+                                            <TextBlock Text="{Binding start_datetime, StringFormat=Дата брони: {0}}"/>
+                                            <TextBlock Text="{Binding quest_count, StringFormat=Количество гостей: {0}}"/>
+                                            <TextBlock Text="{Binding Status.name, StringFormat=Статус: {0}}"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+                                            <Button Content="Отменить" Click="BtnOtmenaBroni_Click" Height="20"/>
+                                        </StackPanel>
 
-                    <ScrollViewer>
-                        <ItemsControl x:Name="LstMyBroni" Cursor="">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Style="{StaticResource CardBorder2}" Margin="5" BorderThickness="1">
-                                        <Grid >
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
-                                                <TextBlock Text="{Binding DiningTable.Halls.Restaurants.name, StringFormat=Ресторан: {0}}"/>
-                                                <TextBlock Text="{Binding DiningTable.Halls.name, StringFormat=Зал: {0}}"/>
-                                                <TextBlock Text="{Binding DiningTable.id, StringFormat=Столик: {0}}"/>
-                                                <TextBlock Text="{Binding start_datetime, StringFormat=Дата брони: {0}}"/>
-                                                <TextBlock Text="{Binding quest_count, StringFormat=Количество гостей: {0}}"/>
-                                                <TextBlock Text="{Binding Status.name, StringFormat=Статус: {0}}"/>
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
-                                                <Button Content="Отменить" Click="BtnOtmenaBroni_Click" Height="20"/>
-                                            </StackPanel>
-                                            
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </StackPanel>
-            </Border>
-            <Border Grid.Column="1" Style="{StaticResource CardBorder}" Margin="0,5,0,5">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Мои ожидания" Style="{StaticResource HeaderText}" FontSize="16"/>
-
-                    <ScrollViewer>
-                        <ItemsControl x:Name="LstMyExpectations">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Style="{StaticResource CardBorder2}" Margin="5" BorderThickness="1" HorizontalAlignment="Stretch">
-                                        <Grid HorizontalAlignment="Stretch">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="400"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
-                                                <TextBlock Text="{Binding Restaurants.name, StringFormat=Ресторан: {0}}"/>
-                                                <TextBlock Text="{Binding Halls.name, StringFormat=Зал: {0}}"/>
-                                                <TextBlock Text="{Binding desired_datetime, StringFormat=Желаемая дата: {0}}"/>
-                                                <TextBlock Text="{Binding quest_count, StringFormat=Количество гостей: {0}}"/>
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
-                                                <TextBlock x:Name="lblStatus" FontWeight="Bold" Foreground="Red" Text="Еще нет свободных столиков(">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock">
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <TextBlock Text="Мои ожидания" Style="{StaticResource HeaderText}" FontSize="25"/>
+                <ScrollViewer>
+                    <ItemsControl x:Name="LstMyExpectations">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource CardBorder}" Margin="5" BorderThickness="1" HorizontalAlignment="Stretch">
+                                    <Grid HorizontalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="400"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
+                                            <TextBlock Text="{Binding Restaurants.name, StringFormat=Ресторан: {0}}"/>
+                                            <TextBlock Text="{Binding Halls.name, StringFormat=Зал: {0}}"/>
+                                            <TextBlock Text="{Binding desired_datetime, StringFormat=Желаемая дата: {0}}"/>
+                                            <TextBlock Text="{Binding quest_count, StringFormat=Количество гостей: {0}}"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+                                            <TextBlock x:Name="lblStatus" FontWeight="Bold">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Text" Value="Еще нет свободных столиков("/>
+                                                        <Setter Property="Foreground" Value="Red"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding CanBook}" Value="True">
+                                                                <Setter Property="Text" Value="Свободный столик появился!))"/>
+                                                                <Setter Property="Foreground" Value="Green"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="btnBook" Width="200" Content="Забронировать" Click="BookFromWaitlist_Click">
+                                                    <Button.Style>
+                                                        <Style TargetType="Button">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
                                                             <Style.Triggers>
                                                                 <DataTrigger Binding="{Binding CanBook}" Value="True">
-                                                                    <Setter Property="Text" Value="Свободный столик появился!))"/>
-                                                                    <Setter Property="Foreground" Value="Green"/>
+                                                                    <Setter Property="Visibility" Value="Visible"/>
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Button x:Name="btnBook" Content="Забронировать" Click="BookFromWaitlist_Click">
-                                                        <Button.Style>
-                                                            <Style TargetType="Button">
-                                                                <Setter Property="Visibility" Value="Collapsed"/>
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding CanBook}" Value="True">
-                                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </Button.Style>
-                                                    </Button>
-                                                    <Button Content="🗑️" Click="RemoveWaitlist_Click" HorizontalAlignment="Right"/>
-                                                </StackPanel>
+                                                    </Button.Style>
+                                                </Button>
+                                                <Button Content="🗑️" Click="RemoveWaitlist_Click" HorizontalAlignment="Right"/>
                                             </StackPanel>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </StackPanel>
-            </Border>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
         </Grid>
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button Content="Новая бронь" Click="BtnRest_Click"/>

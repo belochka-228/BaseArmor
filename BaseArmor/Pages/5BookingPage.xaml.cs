@@ -166,6 +166,7 @@ namespace BaseArmor.Pages
             {
                 user_id = UserData.CurrentUser.id,
                 restaurant_id = UserData.SelectedRestaurant.id,
+                hall_id = UserData.SelectedHall.id,
                 guests_count = guest,
                 desired_datetime = startDateTime
             };

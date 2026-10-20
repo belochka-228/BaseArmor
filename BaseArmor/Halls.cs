@@ -18,6 +18,7 @@ namespace BaseArmor
         public Halls()
         {
             this.DiningTable = new HashSet<DiningTable>();
+            this.Waitlist = new HashSet<Waitlist>();
         }
     
         public int id { get; set; }
@@ -32,5 +33,7 @@ namespace BaseArmor
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiningTable> DiningTable { get; set; }
         public virtual Restaurants Restaurants { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Waitlist> Waitlist { get; set; }
     }
 }

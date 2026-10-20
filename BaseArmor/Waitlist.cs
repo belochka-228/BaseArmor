@@ -19,8 +19,10 @@ namespace BaseArmor
         public int restaurant_id { get; set; }
         public int guests_count { get; set; }
         public System.DateTime desired_datetime { get; set; }
+        public Nullable<int> hall_id { get; set; }
     
         public virtual Restaurants Restaurants { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Halls Halls { get; set; }
     }
 }

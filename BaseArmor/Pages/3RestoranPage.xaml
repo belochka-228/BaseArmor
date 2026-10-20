@@ -13,14 +13,17 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0" Content="Профиль" HorizontalAlignment="Left" Click="BtnProfil_Click" VerticalAlignment="Top"/>
-        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="400">
+        
+        <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource CardBorder}" Width="400">
             <TextBlock Text="Выбор ресторана" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" >
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" >
             <TextBlock Text="Поиск: " Style="{StaticResource DarkText}"/>
             <TextBox x:Name="txtSource" Width="200" TextChanged="txtSource_TextChanged"/>
 
@@ -32,7 +35,7 @@
             </ComboBox>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="2" Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <ItemsControl x:Name="ListRestorans">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -59,8 +62,13 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <StackPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Button Content="Выйти из системы" Click="BtnBack_Click"/>
+        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left"  VerticalAlignment="Center" Cursor="">
+            <Button  Click="BtnProfil_Click" Width="70" Height="70">
+                <Image Source="/Images/profil.jpg" Stretch="Uniform" />
+            </Button>
+            <Button Click="BtnBack_Click" Width="70" Height="70">
+                <Image Source="/Images/exit.png" Stretch="Uniform"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

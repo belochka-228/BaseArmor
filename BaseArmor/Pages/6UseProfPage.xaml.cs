@@ -137,7 +137,7 @@ namespace BaseArmor.Pages
             var allBooking = Core.Context.Booking.Where(b => b.status_id == 1 || b.status_id == 2).ToList();
             var busyTableIds = allBooking.Where(b => b.start_datatime <= end && b.start_datatime.AddMinutes(b.duration_minutes) >= start).Select(b => b.table_id).ToList();
             var table = Core.Context.DiningTable.Where(t => t.is_active == true).Where(t => !busyTableIds.Contains(t.id))
-                .Where(t => t.TypeTable.count_sit == w.guests_count).Where(t => t.Halls.restaurant_id == w.restaurant_id).FirstOrDefault();
+                .Where(t => t.TypeTable.count_sit == w.guests_count).Where(t => t.hall_id == w.hall_id).FirstOrDefault();
 
             return table != null;
         }
@@ -147,14 +147,17 @@ namespace BaseArmor.Pages
             var waitlist = button.DataContext as Waitlist;
             if (waitlist == null) return;
 
+            int hallId = waitlist.hall_id ?? Core.Context.Halls.Where(h => h.restaurant_id == waitlist.restaurant_id).Select(h => h.id).FirstOrDefault();
+
             var start = waitlist.desired_datetime;
             var end = start.AddMinutes(120);
 
             var allBooking = Core.Context.Booking.Where(b => b.status_id == 1 || b.status_id == 2).ToList();
-            var busyTableIds = allBooking.Where(b => b.start_datatime <= end
-                         && b.start_datatime.AddMinutes(b.duration_minutes) >= start).Select(b => b.table_id).ToList();
-            var table = Core.Context.DiningTable.Where(t => t.is_active == true).Where(t => !busyTableIds.Contains(t.id))
-                .Where(t => t.TypeTable.count_sit == waitlist.guests_count).Where(t => t.Halls.restaurant_id == waitlist.restaurant_id).FirstOrDefault();
+
+            var busyTableIds = allBooking.Where(b => b.start_datatime <= end && b.start_datatime.AddMinutes(b.duration_minutes) >= start).Select(b => b.table_id).ToList();
+
+            var table = Core.Context.DiningTable.Where(t => t.is_active == true).Where(t => !busyTableIds.Contains(t.id)).Where(t => t.TypeTable.count_sit == waitlist.guests_count)
+                .Where(t => t.hall_id == hallId).FirstOrDefault();
 
             if (table == null)
             {
@@ -172,9 +175,36 @@ namespace BaseArmor.Pages
                 status_id = 1
             };
             Core.Context.Booking.Add(booking);
-
-            Core.Context.Waitlist.Remove(waitlist);
             Core.Context.SaveChanges();
+
+            var dbWaitlist = Core.Context.Waitlist.FirstOrDefault(w => w.id == waitlist.id);
+            if (dbWaitlist != null)
+            {
+                Core.Context.Waitlist.Remove(dbWaitlist);
+                Core.Context.SaveChanges();
+            }
+
+            var hall = Core.Context.Halls.FirstOrDefault(h => h.id == hallId);
+
+            if (hall != null && hall.has_deposit)
+            {
+                var depozit = new Deposit
+                {
+                    id = booking.id,
+                    amount = 1500,
+                    status_id = 1,
+                    method_id = 1,
+                    payment_date = DateTime.Now
+                };
+                Core.Context.Deposit.Add(depozit);
+                Core.Context.SaveChanges();
+
+                UserData.CurrentDepozit = depozit;
+
+                MessageBox.Show("Бронь создана, требуется оплата депозита!");
+                NavigationService?.Navigate(new _9DepozitPay());
+                return;
+            }
 
             MessageBox.Show("Бронь создана из листа ожидания!");
             LoadBookings();

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ArmorBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище ArmorBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Booking">
           <Key>
             <PropertyRef Name="id" />
@@ -122,6 +122,7 @@
           <Property Name="restaurant_id" Type="int" Nullable="false" />
           <Property Name="guests_count" Type="int" Nullable="false" />
           <Property Name="desired_datetime" Type="datetime" Nullable="false" />
+          <Property Name="hall_id" Type="int" />
         </EntityType>
         <Association Name="FK__Booking__table_i__46E78A0C">
           <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="1" />
@@ -267,6 +268,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Waitlist_Halls">
+          <End Role="Halls" Type="Self.Halls" Multiplicity="0..1" />
+          <End Role="Waitlist" Type="Self.Waitlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Halls">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Waitlist">
+              <PropertyRef Name="hall_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище ArmorBaseModelContainer">
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deposit" EntityType="Self.Deposit" Schema="dbo" store:Type="Tables" />
@@ -328,9 +341,12 @@
             <End Role="TypeTable" EntitySet="TypeTable" />
             <End Role="DiningTable" EntitySet="DiningTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_Waitlist_Halls" Association="Self.FK_Waitlist_Halls">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="Waitlist" EntitySet="Waitlist" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ArmorBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -392,6 +408,7 @@
           <Property Name="photo_url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DiningTable" Relationship="Self.FK__DiningTab__hall___44FF419A" FromRole="Halls" ToRole="DiningTable" />
           <NavigationProperty Name="Restaurants" Relationship="Self.FK__Halls__restauran__440B1D61" FromRole="Halls" ToRole="Restaurants" />
+          <NavigationProperty Name="Waitlist" Relationship="ArmorBaseModel.FK_Waitlist_Halls" FromRole="Halls" ToRole="Waitlist" />
         </EntityType>
         <EntityType Name="MethodPay">
           <Key>
@@ -475,6 +492,8 @@
           <Property Name="desired_datetime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Restaurants" Relationship="Self.FK__Waitlist__restau__4BAC3F29" FromRole="Waitlist" ToRole="Restaurants" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Waitlist__user_i__4AB81AF0" FromRole="Waitlist" ToRole="Users" />
+          <Property Name="hall_id" Type="Int32" />
+          <NavigationProperty Name="Halls" Relationship="ArmorBaseModel.FK_Waitlist_Halls" FromRole="Waitlist" ToRole="Halls" />
         </EntityType>
         <Association Name="FK__Booking__table_i__46E78A0C">
           <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="1" />
@@ -681,7 +700,23 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Waitlist" EntitySet="Waitlist" />
           </AssociationSet>
+          <AssociationSet Name="FK_Waitlist_Halls" Association="ArmorBaseModel.FK_Waitlist_Halls">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="Waitlist" EntitySet="Waitlist" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Waitlist_Halls">
+          <End Type="ArmorBaseModel.Halls" Role="Halls" Multiplicity="0..1" />
+          <End Type="ArmorBaseModel.Waitlist" Role="Waitlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Halls">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Waitlist">
+              <PropertyRef Name="hall_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -810,6 +845,7 @@
           <EntitySetMapping Name="Waitlist">
             <EntityTypeMapping TypeName="ArmorBaseModel.Waitlist">
               <MappingFragment StoreEntitySet="Waitlist">
+                <ScalarProperty Name="hall_id" ColumnName="hall_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
