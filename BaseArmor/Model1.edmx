@@ -112,6 +112,7 @@
           <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Waitlist">
           <Key>
@@ -408,7 +409,7 @@
           <Property Name="photo_url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DiningTable" Relationship="Self.FK__DiningTab__hall___44FF419A" FromRole="Halls" ToRole="DiningTable" />
           <NavigationProperty Name="Restaurants" Relationship="Self.FK__Halls__restauran__440B1D61" FromRole="Halls" ToRole="Restaurants" />
-          <NavigationProperty Name="Waitlist" Relationship="ArmorBaseModel.FK_Waitlist_Halls" FromRole="Halls" ToRole="Waitlist" />
+          <NavigationProperty Name="Waitlist" Relationship="Self.FK_Waitlist_Halls" FromRole="Halls" ToRole="Waitlist" />
         </EntityType>
         <EntityType Name="MethodPay">
           <Key>
@@ -480,6 +481,7 @@
           <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__user_id__45F365D3" FromRole="Users" ToRole="Booking" />
           <NavigationProperty Name="Roles" Relationship="Self.FK__Users__role_id__4CA06362" FromRole="Users" ToRole="Roles" />
           <NavigationProperty Name="Waitlist" Relationship="Self.FK__Waitlist__user_i__4AB81AF0" FromRole="Users" ToRole="Waitlist" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Waitlist">
           <Key>
@@ -490,10 +492,10 @@
           <Property Name="restaurant_id" Type="Int32" Nullable="false" />
           <Property Name="guests_count" Type="Int32" Nullable="false" />
           <Property Name="desired_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="hall_id" Type="Int32" />
+          <NavigationProperty Name="Halls" Relationship="Self.FK_Waitlist_Halls" FromRole="Waitlist" ToRole="Halls" />
           <NavigationProperty Name="Restaurants" Relationship="Self.FK__Waitlist__restau__4BAC3F29" FromRole="Waitlist" ToRole="Restaurants" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Waitlist__user_i__4AB81AF0" FromRole="Waitlist" ToRole="Users" />
-          <Property Name="hall_id" Type="Int32" />
-          <NavigationProperty Name="Halls" Relationship="ArmorBaseModel.FK_Waitlist_Halls" FromRole="Waitlist" ToRole="Halls" />
         </EntityType>
         <Association Name="FK__Booking__table_i__46E78A0C">
           <End Role="DiningTable" Type="Self.DiningTable" Multiplicity="1" />
@@ -603,6 +605,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Waitlist_Halls">
+          <End Role="Halls" Type="Self.Halls" Multiplicity="0..1" />
+          <End Role="Waitlist" Type="Self.Waitlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Halls">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Waitlist">
+              <PropertyRef Name="hall_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Waitlist__restau__4BAC3F29">
           <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="1" />
           <End Role="Waitlist" Type="Self.Waitlist" Multiplicity="*" />
@@ -688,6 +702,10 @@
             <End Role="Restaurants" EntitySet="Restaurants" />
             <End Role="Halls" EntitySet="Halls" />
           </AssociationSet>
+          <AssociationSet Name="FK_Waitlist_Halls" Association="Self.FK_Waitlist_Halls">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="Waitlist" EntitySet="Waitlist" />
+          </AssociationSet>
           <AssociationSet Name="FK__Waitlist__restau__4BAC3F29" Association="Self.FK__Waitlist__restau__4BAC3F29">
             <End Role="Restaurants" EntitySet="Restaurants" />
             <End Role="Waitlist" EntitySet="Waitlist" />
@@ -700,23 +718,7 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Waitlist" EntitySet="Waitlist" />
           </AssociationSet>
-          <AssociationSet Name="FK_Waitlist_Halls" Association="ArmorBaseModel.FK_Waitlist_Halls">
-            <End Role="Halls" EntitySet="Halls" />
-            <End Role="Waitlist" EntitySet="Waitlist" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Waitlist_Halls">
-          <End Type="ArmorBaseModel.Halls" Role="Halls" Multiplicity="0..1" />
-          <End Type="ArmorBaseModel.Waitlist" Role="Waitlist" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Halls">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Waitlist">
-              <PropertyRef Name="hall_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -831,6 +833,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ArmorBaseModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
                 <ScalarProperty Name="login" ColumnName="login" />
@@ -845,12 +848,12 @@
           <EntitySetMapping Name="Waitlist">
             <EntityTypeMapping TypeName="ArmorBaseModel.Waitlist">
               <MappingFragment StoreEntitySet="Waitlist">
-                <ScalarProperty Name="hall_id" ColumnName="hall_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
                 <ScalarProperty Name="guests_count" ColumnName="guests_count" />
                 <ScalarProperty Name="desired_datetime" ColumnName="desired_datetime" />
+                <ScalarProperty Name="hall_id" ColumnName="hall_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

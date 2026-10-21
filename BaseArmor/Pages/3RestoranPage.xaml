@@ -23,7 +23,7 @@
         <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource CardBorder}" Width="400">
             <TextBlock Text="Выбор ресторана" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" >
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock Text="Поиск: " Style="{StaticResource DarkText}"/>
             <TextBox x:Name="txtSource" Width="200" TextChanged="txtSource_TextChanged"/>
 
@@ -62,11 +62,11 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left"  VerticalAlignment="Center" Cursor="">
-            <Button  Click="BtnProfil_Click" Width="70" Height="70">
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Left"  VerticalAlignment="Bottom">
+            <Button  Click="BtnProfil_Click" Width="60" Height="60">
                 <Image Source="/Images/profil.jpg" Stretch="Uniform" />
             </Button>
-            <Button Click="BtnBack_Click" Width="70" Height="70">
+            <Button Click="BtnBack_Click" Width="60" Height="60">
                 <Image Source="/Images/exit.png" Stretch="Uniform"/>
             </Button>
         </StackPanel>

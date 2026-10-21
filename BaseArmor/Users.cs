@@ -29,6 +29,7 @@ namespace BaseArmor
         public string last_name { get; set; }
         public string phone { get; set; }
         public bool is_active { get; set; }
+        public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Booking { get; set; }

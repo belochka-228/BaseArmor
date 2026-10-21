@@ -13,13 +13,16 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="400">
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource CardBorder}" Width="400">
             <TextBlock x:Name="TitleRestik" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" >
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" >
             <TextBlock Text="Поиск: " Style="{StaticResource DarkText}"/>
             <TextBox x:Name="txtSource" Width="200" TextChanged="txtSource_TextChanged"/>
 
@@ -29,7 +32,7 @@
             <RadioButton x:Name="rbWithoutDeposit" Content="Без депозита" GroupName="Deposit" Margin="5,0,0,0" Checked="rb_Checked" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
             <ItemsControl x:Name="ListHalls">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -53,12 +56,13 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            
         </ScrollViewer>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Button Content="Назад к ресторанам" Click="BtnRestiki_Click"/>
-            <Button Content="Выйти из системы" Click="BtnBack_Click"/>
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Left"  VerticalAlignment="Bottom">
+            <Button Content="Назад" Click="BtnRestiki_Click"/>
+            <Button Click="BtnBack_Click" Width="60" Height="60">
+                <Image Source="/Images/exit.png" Stretch="Uniform"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

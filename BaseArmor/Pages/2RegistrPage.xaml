@@ -20,6 +20,9 @@
 
                 <TextBlock Text="Номер телефона"/>
                 <TextBox x:Name="txtNumber"/>
+                
+                <TextBlock Text="Почта"/>
+                <TextBox x:Name="txtEmail"/>
 
                 <TextBlock Text="Логин"/>
                 <TextBox x:Name="txtLogin"/>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BaseArmor.CRUD;
 
 namespace BaseArmor.Pages
 {
@@ -23,6 +24,33 @@ namespace BaseArmor.Pages
         public _7AdminPage()
         {
             InitializeComponent();
+        }
+        private void BtnUsers_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new UsersTabPage());
+        }
+
+        private void BtnRestaurants_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new RestaurantsTabPage());
+        }
+
+        private void BtnBooking_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new BookingTabPage());
+        }
+
+        private void BtnDiagram_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new DiagrammPage());
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            UserData.CurrentUser = null;
+            UserData.SelectedRestaurant = null;
+            UserData.SelectedHall = null;
+            NavigationService?.Navigate(new _1LoginPage());
         }
     }
 }

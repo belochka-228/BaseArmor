@@ -1,0 +1,45 @@
+﻿<Page x:Class="BaseArmor.CRUD.AddUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BaseArmor.CRUD"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddUserPage">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Style="{StaticResource CardBorder}" Width="500">
+            <StackPanel>
+                <TextBlock x:Name="TitleText" Text="Добавление пользователя" Style="{StaticResource HeaderText}"/>
+
+                <TextBlock Text="Фамилия"/>
+                <TextBox x:Name="txtLastName" Text="{Binding last_name}"/>
+
+                <TextBlock Text="Имя"/>
+                <TextBox x:Name="txtFirstName" Text="{Binding first_name}"/>
+
+                <TextBlock Text="Логин"/>
+                <TextBox x:Name="txtLogin" Text="{Binding login}"/>
+
+                <TextBlock Text="Пароль (оставьте пустым, чтобы не менять)"/>
+                <PasswordBox x:Name="txtPassword"/>
+
+                <TextBlock Text="Телефон"/>
+                <TextBox x:Name="txtPhone" Text="{Binding phone}"/>
+
+                <TextBlock Text="Email"/>
+                <TextBox x:Name="txtEmail" Text="{Binding email}"/>
+
+                <TextBlock Text="Роль"/>
+                <ComboBox x:Name="cmbRole" DisplayMemberPath="name" SelectedValuePath="id" SelectedValue="{Binding role_id}"/>
+
+                <TextBlock Text="Активен"/>
+                <CheckBox x:Name="chkActive" IsChecked="{Binding is_active}" Content="Пользователь активен"/>
+
+                <Button Content="Сохранить" Click="BtnSave_Click" Margin="0,20,0,0"/>
+                <Button Content="Назад" Click="BtnBack_Click" Background="Transparent" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

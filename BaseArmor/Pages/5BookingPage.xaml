@@ -12,18 +12,18 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <Border Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource CardBorder}" Width="400">
+        <Border Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource CardBorder}" Width="400">
             <TextBlock Text="Бронирование" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>
 
-        <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <Border Style="{StaticResource CardBorder}">
                     <StackPanel>
@@ -49,7 +49,7 @@
             </StackPanel>
         </ScrollViewer>
 
-        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource CardBorder}">
+        <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource CardBorder}">
             <StackPanel Margin="10">
                 <TextBlock Text="Параметры брони" Style="{StaticResource HeaderText}" FontSize="16"/>
 
@@ -92,9 +92,11 @@
             </StackPanel>
         </Border>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Content="Назад к залам" Click="BtnHalls_Click"/>
-            <Button Content="Выйти из системы" Click="BtnBack_Click"/>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left"  VerticalAlignment="Bottom">
+            <Button Content="Назад" Click="BtnHalls_Click"/>
+            <Button Click="BtnBack_Click" Width="60" Height="60">
+                <Image Source="/Images/exit.png" Stretch="Uniform"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>
