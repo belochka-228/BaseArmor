@@ -48,21 +48,28 @@ namespace BaseArmor.CRUD
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var selected = DataGridBooking.SelectedItems.Cast<Booking>().ToList();
-            if (selected.Count == 0)
+            var selectedBookings = DataGridBooking.SelectedItems.Cast<Booking>().ToList();
+            if (selectedBookings.Count == 0)
             {
                 MessageBox.Show("Выберите брони для удаления.");
                 return;
             }
 
-            if (MessageBox.Show($"Удалить {selected.Count} броней?", "Внимание",
+            if (MessageBox.Show($"Удалить {selectedBookings.Count} броней и связанные депозиты?", "Внимание",
                 MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    Core.Context.Booking.RemoveRange(selected);
+                    foreach (var booking in selectedBookings)
+                    {
+                        var deposit = Core.Context.Deposit.FirstOrDefault(d => d.id == booking.id);
+                        if (deposit != null)
+                            Core.Context.Deposit.Remove(deposit);
+                    }
+                    Core.Context.Booking.RemoveRange(selectedBookings);
                     Core.Context.SaveChanges();
-                    MessageBox.Show("Данные успешно удалены!");
+
+                    MessageBox.Show("Брони и депозиты удалены.");
                     LoadData();
                 }
                 catch (Exception ex)

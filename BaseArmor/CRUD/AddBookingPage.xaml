@@ -15,10 +15,10 @@
                     <TextBlock x:Name="TitleText" Text="Добавление брони" Style="{StaticResource HeaderText}"/>
 
                     <TextBlock Text="Пользователь"/>
-                    <ComboBox x:Name="cmbUser" DisplayMemberPath="login" SelectedValuePath="id" SelectedValue="{Binding user_id}"/>
+                    <ComboBox x:Name="cmbUser" SelectedValuePath="id" SelectedValue="{Binding user_id}"/>
 
                     <TextBlock Text="Столик"/>
-                    <ComboBox x:Name="cmbTable" DisplayMemberPath="id" SelectedValuePath="id" SelectedValue="{Binding table_id}"/>
+                    <ComboBox x:Name="cmbTable" SelectedValuePath="id" SelectedValue="{Binding table_id}"/>
 
                     <TextBlock Text="Дата и время (например, 25.12.2026 18:00)"/>
                         <TextBox x:Name="txtDate"/>
@@ -30,9 +30,9 @@
                     <TextBox x:Name="txtGuests" Text="{Binding guests_count}"/>
 
                     <TextBlock Text="Статус"/>
-                    <ComboBox x:Name="cmbStatus" DisplayMemberPath="name" SelectedValuePath="id" SelectedValue="{Binding status_id}"/>
+                    <ComboBox x:Name="cmbStatus" SelectedValuePath="id" SelectedValue="{Binding status_id}"/>
 
-                    <TextBlock Text="Комментарий"/>
+                    <TextBlock Text="Комментарий" Margin="0,5"/>
                     <TextBox x:Name="txtComment" Text="{Binding comment}" Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
 
                     <Button Content="Сохранить" Click="BtnSave_Click" Margin="0,20,0,0"/>

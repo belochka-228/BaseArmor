@@ -20,15 +20,15 @@
         </Grid.ColumnDefinitions>
 
         
-        <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource CardBorder}" Width="400">
+        <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource CardBorder}" Width="600">
             <TextBlock Text="Выбор ресторана" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" >
             <TextBlock Text="Поиск: " Style="{StaticResource DarkText}"/>
             <TextBox x:Name="txtSource" Width="200" TextChanged="txtSource_TextChanged"/>
 
             <TextBlock Text="Сортировка по: " Margin="10" VerticalAlignment="Center" Style="{StaticResource DarkText}"/>
-            <ComboBox x:Name="cmbSort" Width="200" SelectionChanged="cmbSort_SelectionChanged" VerticalAlignment="Center" Height="30">
+            <ComboBox x:Name="cmbSort" Width="200"  SelectionChanged="cmbSort_SelectionChanged" VerticalAlignment="Center" Height="30">
                 <ComboBoxItem>По рейтингу</ComboBoxItem>
                 <ComboBoxItem>По среднему чеку (возр)</ComboBoxItem>
                 <ComboBoxItem>По среднему чеку (умен)</ComboBoxItem>

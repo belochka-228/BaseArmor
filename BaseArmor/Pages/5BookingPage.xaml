@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <Border Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource CardBorder}" Width="400">
+        <Border Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource CardBorder}" Width="600">
             <TextBlock Text="Бронирование" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>
 

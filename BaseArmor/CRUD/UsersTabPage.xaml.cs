@@ -55,14 +55,31 @@ namespace BaseArmor.CRUD
                 return;
             }
 
-            if (MessageBox.Show($"Удалить {selectedUsers.Count} пользователей?", "Внимание",
+            if (MessageBox.Show($"Удалить {selectedUsers.Count} пользователей и все их брони?", "Внимание",
                 MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 try
                 {
+                    foreach (var user in selectedUsers)
+                    {
+                        var userBookings = Core.Context.Booking.Where(b => b.user_id == user.id).ToList();
+
+                        foreach (var booking in userBookings)
+                        {
+                            var deposit = Core.Context.Deposit.FirstOrDefault(d => d.id == booking.id);
+                            if (deposit != null)
+                                Core.Context.Deposit.Remove(deposit);
+                        }
+                        Core.Context.Booking.RemoveRange(userBookings);
+
+                        var userWaitlists = Core.Context.Waitlist.Where(w => w.user_id == user.id).ToList();
+                        Core.Context.Waitlist.RemoveRange(userWaitlists);
+                    }
+
                     Core.Context.Users.RemoveRange(selectedUsers);
                     Core.Context.SaveChanges();
-                    MessageBox.Show("Данные успешно удалены!");
+
+                    MessageBox.Show("Пользователи и все связанные данные удалены.");
                     LoadData();
                 }
                 catch (Exception ex)

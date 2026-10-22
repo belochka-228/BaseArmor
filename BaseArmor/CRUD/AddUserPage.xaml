@@ -34,7 +34,7 @@
                 <TextBlock Text="Роль"/>
                 <ComboBox x:Name="cmbRole" DisplayMemberPath="name" SelectedValuePath="id" SelectedValue="{Binding role_id}"/>
 
-                <TextBlock Text="Активен"/>
+                <TextBlock Text="Активен" Margin="0,10"/>
                 <CheckBox x:Name="chkActive" IsChecked="{Binding is_active}" Content="Пользователь активен"/>
 
                 <Button Content="Сохранить" Click="BtnSave_Click" Margin="0,20,0,0"/>

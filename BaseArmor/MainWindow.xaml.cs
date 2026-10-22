@@ -68,8 +68,22 @@ namespace BaseArmor
             if (MainFrame.Content is Page currentPage)
             {
                 var type = currentPage.GetType();
-                var newPage = Activator.CreateInstance(type) as Page;
-                MainFrame.Navigate(newPage);
+
+                var constructor = type.GetConstructor(Type.EmptyTypes);
+                if (constructor != null)
+                {
+                    try
+                    {
+                        var newPage = Activator.CreateInstance(type) as Page;
+                        if (newPage != null)
+                        {
+                            MainFrame.Navigate(newPage);
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
             }
         }
 

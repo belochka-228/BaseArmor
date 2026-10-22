@@ -48,21 +48,50 @@ namespace BaseArmor.CRUD
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var selected = DataGridRestaurants.SelectedItems.Cast<Restaurants>().ToList();
-            if (selected.Count == 0)
+            var selectedRestaurants = DataGridRestaurants.SelectedItems.Cast<Restaurants>().ToList();
+            if (selectedRestaurants.Count == 0)
             {
                 MessageBox.Show("Выберите рестораны для удаления.");
                 return;
             }
 
-            if (MessageBox.Show($"Удалить {selected.Count} ресторанов?", "Внимание",
+            if (MessageBox.Show($"Удалить {selectedRestaurants.Count} ресторанов со всеми залами и бронями?", "Внимание",
                 MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    Core.Context.Restaurants.RemoveRange(selected);
+                    foreach (var restaurant in selectedRestaurants)
+                    {
+                        var halls = Core.Context.Halls.Where(h => h.restaurant_id == restaurant.id).ToList();
+
+                        foreach (var hall in halls)
+                        {
+                            var tables = Core.Context.DiningTable.Where(t => t.hall_id == hall.id).ToList();
+
+                            foreach (var table in tables)
+                            {
+                                var bookings = Core.Context.Booking.Where(b => b.table_id == table.id).ToList();
+
+                                foreach (var booking in bookings)
+                                {
+                                    var deposit = Core.Context.Deposit.FirstOrDefault(d => d.id == booking.id);
+                                    if (deposit != null)
+                                        Core.Context.Deposit.Remove(deposit);
+                                }
+                                Core.Context.Booking.RemoveRange(bookings);
+                            }
+                            Core.Context.DiningTable.RemoveRange(tables);
+                        }
+
+                        Core.Context.Halls.RemoveRange(halls);
+
+                        var waitlists = Core.Context.Waitlist.Where(w => w.restaurant_id == restaurant.id).ToList();
+                        Core.Context.Waitlist.RemoveRange(waitlists);
+                    }
+                    Core.Context.Restaurants.RemoveRange(selectedRestaurants);
                     Core.Context.SaveChanges();
-                    MessageBox.Show("Данные успешно удалены!");
+
+                    MessageBox.Show("Рестораны и все связанные данные удалены.");
                     LoadData();
                 }
                 catch (Exception ex)

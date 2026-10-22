@@ -98,5 +98,10 @@ namespace BaseArmor.Pages
             UserData.SelectedRestaurant = null;
             NavigationService?.Navigate(new _3RestoranPage());
         }
+
+        private void BtnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new _6UseProfPage());
+        }
     }
 }

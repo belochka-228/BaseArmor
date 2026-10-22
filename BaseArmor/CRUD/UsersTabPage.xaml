@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Style="{StaticResource CardBorder}">
+        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="600">
             <TextBlock Text="Таблица пользователей" HorizontalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>
 

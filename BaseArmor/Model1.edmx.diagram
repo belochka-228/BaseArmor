@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3fabed7ff3724dd89635be4bc7bd9a39" Name="Diagram1">
+      <Diagram DiagramId="ef14f8dc5ff641279ffcf71ea07f2e8e" Name="Diagram1">
         <EntityTypeShape EntityType="ArmorBaseModel.Booking" Width="1.5" PointX="10.5" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ArmorBaseModel.Deposit" Width="1.5" PointX="12.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ArmorBaseModel.DiningTable" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
@@ -12,10 +12,10 @@
         <EntityTypeShape EntityType="ArmorBaseModel.MethodPay" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArmorBaseModel.Restaurants" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ArmorBaseModel.Roles" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArmorBaseModel.Status" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArmorBaseModel.Status" Width="1.5" PointX="8.25" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ArmorBaseModel.StatusPay" Width="1.5" PointX="10.5" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ArmorBaseModel.TypeTable" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArmorBaseModel.Users" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArmorBaseModel.Users" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ArmorBaseModel.Waitlist" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="ArmorBaseModel.FK__Booking__table_i__46E78A0C" ManuallyRouted="false" />
         <AssociationConnector Association="ArmorBaseModel.FK__Booking__user_id__45F365D3" ManuallyRouted="false" />

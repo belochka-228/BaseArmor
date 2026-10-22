@@ -15,11 +15,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Style="{StaticResource CardBorder}">
+        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="600">
             <TextBlock Text="Таблица броней" HorizontalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>
 
-        <DataGrid Grid.Row="1" x:Name="DataGridBooking" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,10,0,10">
+        <DataGrid Grid.Row="1" x:Name="DataGridBooking" Foreground="{DynamicResource TextBrush}" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,10,0,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="50"/>
                 <DataGridTextColumn Header="Пользователь" Binding="{Binding Users.last_name}" Width="120"/>

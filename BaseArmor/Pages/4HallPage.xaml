@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource CardBorder}" Width="400">
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource CardBorder}" Width="600">
             <TextBlock x:Name="TitleRestik" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
         </Border>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" >
