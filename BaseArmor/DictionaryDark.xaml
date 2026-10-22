@@ -54,64 +54,43 @@
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
     </Style>
 
-<!--    <Style TargetType="ComboBox">
+    <Style TargetType="ComboBox">
+        <Setter Property="FontFamily" Value="Open Sans"/>
         <Setter Property="Height" Value="30"/>
-        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FontFamily" Value="Open Sans"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
                     <Grid>
-                        <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="25"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                       Margin="8,0,0,0"
-                                       VerticalAlignment="Center"
-                                       Text="{Binding SelectedItem.Display, RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                       Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBox}}"/>
-
-                                <Path Grid.Column="1"
-                                  Data="M 0 0 L 4 4 L 8 0 Z"
-                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                            </Grid>
-                        </Border>
-
-                        <ToggleButton x:Name="ToggleButton"
-                                  Focusable="False"
-                                  ClickMode="Press"
-                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                  Background="Transparent"
-                                  BorderThickness="0">
+                        <ToggleButton x:Name="ToggleButton"  Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" 
+                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
                             <ToggleButton.Template>
                                 <ControlTemplate TargetType="ToggleButton">
-                                    <Border Background="Transparent"/>
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Path Grid.Column="1" Data="M 0 0 L 4 4 L 8 0 Z"  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBox}}" 
+                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
                                 </ControlTemplate>
                             </ToggleButton.Template>
                         </ToggleButton>
+                        <ContentPresenter x:Name="ContentSite" IsHitTestVisible="False" Margin="5,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                          Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" TextElement.Foreground="{TemplateBinding Foreground}"/>  
 
-                        <Popup x:Name="PART_Popup"
-                           Placement="Bottom"
-                           IsOpen="{TemplateBinding IsDropDownOpen}"
-                           AllowsTransparency="True">
-                            <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="1"
-                                MinWidth="{TemplateBinding ActualWidth}"
-                                MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                        <Popup x:Name="PART_Popup" AllowsTransparency="True" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" PopupAnimation="Slide">
+                            <Border MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}"  Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"  BorderThickness="1">
                                 <ScrollViewer>
-                                    <StackPanel IsItemsHost="True"/>
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
                                 </ScrollViewer>
                             </Border>
                         </Popup>
@@ -122,19 +101,17 @@
     </Style>
 
     <Style TargetType="ComboBoxItem">
-        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+        <Setter Property="FontFamily" Value="Open Sans"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
-        <Setter Property="Padding" Value="8,5"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ComboBoxItem">
-                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                        <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
+        <Setter Property="Padding" Value="5"/>
+        <Style.Triggers>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TextLightBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <Style TargetType="PasswordBox">
         <Setter Property="Height" Value="30"/>

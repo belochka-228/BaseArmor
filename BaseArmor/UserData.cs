@@ -17,5 +17,28 @@ namespace BaseArmor
         public static int DepositFilter { get; set; } = 0;
         public static Deposit CurrentDepozit { get; set; }
     }
+    public partial class Users
+    {
+        public override string ToString()
+        {
+            return $"{login} ({last_name} {first_name})";
+        }
+    }
+
+    public partial class DiningTable
+    {
+        public override string ToString()
+        {
+            return $"Стол {id}";
+        }
+    }
+
+    public partial class Status
+    {
+        public override string ToString()
+        {
+            return name;
+        }
+    }
 }
  

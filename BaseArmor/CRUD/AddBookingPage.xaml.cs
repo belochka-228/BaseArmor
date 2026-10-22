@@ -32,26 +32,13 @@ namespace BaseArmor.CRUD
 
             TitleText.Text = _isEdit ? "Редактирование брони" : "Добавление брони";
 
-            // Заполняем строками "id - логин" (или просто id)
-            cmbUser.ItemsSource = Core.Context.Users
-                .ToList()
-                .Select(u => new { u.id, Display = $"{u.login} ({u.last_name} {u.first_name})" })
-                .ToList();
-            cmbUser.DisplayMemberPath = "Display";
+            cmbUser.ItemsSource = Core.Context.Users.ToList();
             cmbUser.SelectedValuePath = "id";
 
-            cmbTable.ItemsSource = Core.Context.DiningTable
-                .ToList()
-                .Select(t => new { t.id, Display = $"Стол {t.id}" })
-                .ToList();
-            cmbTable.DisplayMemberPath = "Display";
+            cmbTable.ItemsSource = Core.Context.DiningTable.ToList();
             cmbTable.SelectedValuePath = "id";
 
-            cmbStatus.ItemsSource = Core.Context.Status
-                .ToList()
-                .Select(s => new { s.id, Display = s.name })
-                .ToList();
-            cmbStatus.DisplayMemberPath = "Display";
+            cmbStatus.ItemsSource = Core.Context.Status.ToList();
             cmbStatus.SelectedValuePath = "id";
 
             DataContext = _currentBooking;
