@@ -1,6 +1,6 @@
 ﻿USE [ArmorBase]
 GO
-/****** Object:  Table [dbo].[Booking]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[Booking]    Script Date: 22.10.2026 11:34:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[Booking](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Deposit]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[Deposit]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -39,7 +39,7 @@ CREATE TABLE [dbo].[Deposit](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DiningTable]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[DiningTable]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -55,7 +55,7 @@ CREATE TABLE [dbo].[DiningTable](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Halls]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[Halls]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -75,7 +75,7 @@ CREATE TABLE [dbo].[Halls](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MethodPay]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[MethodPay]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -89,7 +89,7 @@ CREATE TABLE [dbo].[MethodPay](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Restaurants]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[Restaurants]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +108,7 @@ CREATE TABLE [dbo].[Restaurants](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -122,7 +122,7 @@ CREATE TABLE [dbo].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Status]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[Status]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -136,7 +136,7 @@ CREATE TABLE [dbo].[Status](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[StatusPay]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[StatusPay]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -150,7 +150,7 @@ CREATE TABLE [dbo].[StatusPay](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TypeTable]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[TypeTable]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -165,7 +165,7 @@ CREATE TABLE [dbo].[TypeTable](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -179,13 +179,14 @@ CREATE TABLE [dbo].[Users](
 	[last_name] [nvarchar](50) NOT NULL,
 	[phone] [nvarchar](50) NOT NULL,
 	[is_active] [bit] NOT NULL,
+	[email] [nvarchar](100) NULL,
  CONSTRAINT [PK__Users__3213E83F13243265] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Waitlist]    Script Date: 17.10.2026 7:42:00 ******/
+/****** Object:  Table [dbo].[Waitlist]    Script Date: 22.10.2026 11:34:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -196,6 +197,7 @@ CREATE TABLE [dbo].[Waitlist](
 	[restaurant_id] [int] NOT NULL,
 	[guests_count] [int] NOT NULL,
 	[desired_datetime] [datetime] NOT NULL,
+	[hall_id] [int] NULL,
  CONSTRAINT [PK__Waitlist__3213E83F9C51B177] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -203,135 +205,234 @@ CREATE TABLE [dbo].[Waitlist](
 ) ON [PRIMARY]
 GO
 SET IDENTITY_INSERT [dbo].[Booking] ON 
-
+GO
 INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (1, 2, 1, CAST(N'2026-10-10T18:00:00.000' AS DateTime), 120, 2, 1, N'Столик у окна', NULL, NULL)
+GO
 INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (2, 3, 3, CAST(N'2026-10-11T19:00:00.000' AS DateTime), 120, 4, 1, N'День рождения', NULL, NULL)
+GO
 INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (3, 2, 11, CAST(N'2026-10-12T20:00:00.000' AS DateTime), 180, 6, 1, N'Просьба тихий стол', NULL, NULL)
+GO
 INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (4, 3, 17, CAST(N'2026-10-13T13:00:00.000' AS DateTime), 90, 2, 3, N'Бизнес-ланч', NULL, NULL)
+GO
 INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (5, 2, 22, CAST(N'2026-10-14T19:00:00.000' AS DateTime), 120, 4, 1, N'Семейный ужин', NULL, NULL)
+GO
 INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (6, 3, 27, CAST(N'2026-10-15T20:00:00.000' AS DateTime), 120, 8, 2, N'Не смогу прийти', N'Изменились планы', CAST(N'2026-10-14T10:15:00.000' AS DateTime))
+GO
 INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (7, 2, 31, CAST(N'2026-10-16T18:30:00.000' AS DateTime), 120, 2, 1, N'Свидание', NULL, NULL)
+GO
 INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (8, 3, 34, CAST(N'2026-10-17T19:30:00.000' AS DateTime), 120, 4, 4, NULL, N'Не пришёл', CAST(N'2026-10-17T21:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (10, 5, 7, CAST(N'2026-10-23T12:00:00.000' AS DateTime), 120, 4, 2, N'', NULL, NULL)
+GO
+INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (11, 5, 25, CAST(N'2026-10-29T12:00:00.000' AS DateTime), 23, 2, 1, N'', NULL, NULL)
+GO
+INSERT [dbo].[Booking] ([id], [user_id], [table_id], [start_datatime], [duration_minutes], [guests_count], [status_id], [comment], [cancellation_reason], [cancellation_date]) VALUES (12, 5, 27, CAST(N'2026-10-28T13:00:00.000' AS DateTime), 55, 4, 1, N'', NULL, NULL)
+GO
 SET IDENTITY_INSERT [dbo].[Booking] OFF
 GO
 INSERT [dbo].[Deposit] ([id], [amount], [status_id], [method_id], [payment_date]) VALUES (1, CAST(1500.00 AS Decimal(10, 2)), 2, 1, CAST(N'2026-10-08T12:30:00.000' AS DateTime))
+GO
 INSERT [dbo].[Deposit] ([id], [amount], [status_id], [method_id], [payment_date]) VALUES (2, CAST(2000.00 AS Decimal(10, 2)), 2, 3, CAST(N'2026-10-09T15:10:00.000' AS DateTime))
+GO
 INSERT [dbo].[Deposit] ([id], [amount], [status_id], [method_id], [payment_date]) VALUES (3, CAST(2500.00 AS Decimal(10, 2)), 1, 1, CAST(N'2026-10-10T18:45:00.000' AS DateTime))
+GO
 INSERT [dbo].[Deposit] ([id], [amount], [status_id], [method_id], [payment_date]) VALUES (4, CAST(1000.00 AS Decimal(10, 2)), 2, 2, CAST(N'2026-10-12T11:00:00.000' AS DateTime))
 GO
+INSERT [dbo].[Deposit] ([id], [amount], [status_id], [method_id], [payment_date]) VALUES (10, CAST(1500.00 AS Decimal(10, 2)), 2, 1, CAST(N'2026-10-21T14:28:35.103' AS DateTime))
+GO
 SET IDENTITY_INSERT [dbo].[DiningTable] ON 
-
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (1, 1, 1, 1)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (2, 1, 1, 1)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (3, 1, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (4, 1, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (5, 1, 1, 3)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (6, 1, 1, 4)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (7, 2, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (8, 2, 1, 3)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (9, 2, 1, 6)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (10, 3, 1, 1)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (11, 3, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (12, 3, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (13, 3, 1, 4)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (14, 3, 1, 6)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (15, 4, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (16, 4, 1, 3)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (17, 5, 1, 1)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (18, 5, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (19, 5, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (20, 5, 1, 3)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (21, 5, 1, 4)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (22, 5, 1, 6)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (23, 6, 1, 3)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (24, 6, 1, 4)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (25, 7, 1, 1)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (26, 7, 1, 1)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (27, 7, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (28, 7, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (29, 7, 1, 3)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (30, 8, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (31, 8, 1, 3)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (32, 9, 1, 1)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (33, 9, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (34, 9, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (35, 9, 1, 4)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (36, 9, 1, 5)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (37, 9, 1, 5)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (38, 10, 1, 2)
+GO
 INSERT [dbo].[DiningTable] ([id], [hall_id], [is_active], [type_id]) VALUES (39, 10, 1, 4)
+GO
 SET IDENTITY_INSERT [dbo].[DiningTable] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Halls] ON 
-
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (1, 1, N'Основной зал', N'Просторный зал в стиле дворянской усадьбы с антикварной мебелью и камином', 0, 80, 1, N'/images/pushkin_main.jpg')
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (2, 1, N'Библиотека', N'Отдельный VIP-зал с книжными шкафами, подходит для торжеств и переговоров', 1, 20, 1, N'/images/pushkin_lib.jpg')
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (3, 2, N'Основной зал', N'Панорамный зал под стеклянным куполом с видом на Москву', 0, 100, 1, N'/images/wr_main.jpg')
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (4, 2, N'Зимний сад', N'Отдельная зона с живыми растениями для приватных ужинов', 1, 25, 1, N'/images/wr_garden.jpg')
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (5, 3, N'Главный зал', N'Роскошный зал в стиле императорского дворца с живым оркестром', 0, 120, 1, N'/images/turandot_main.jpg')
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (6, 3, N'Зал Фарфор', N'VIP-зал с коллекцией фарфора и видом на Тверской бульвар', 1, 30, 1, N'/images/turandot_vip.jpg')
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (7, 4, N'Основной зал', N'Просторный зал в стиле советской столовой с панорамными окнами', 0, 90, 1, N'/images/stolovaya_main.jpg')
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (8, 4, N'Кабинет', N'Небольшой отдельный зал для групп и корпоративных обедов', 1, 15, 1, N'/images/stolovaya_cab.jpg')
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (9, 5, N'Основной зал', N'Современный зал с открытой кухней и барной стойкой', 0, 70, 1, N'/images/fishnet_main.jpg')
+GO
 INSERT [dbo].[Halls] ([id], [restaurant_id], [name], [description], [has_deposit], [capacity], [is_active], [photo_url]) VALUES (10, 5, N'Мясной цех', N'Отдельный зал с грилем и витриной сухого вызревания мяса', 1, 20, 1, N'/images/fishnet_meat.jpg')
+GO
 SET IDENTITY_INSERT [dbo].[Halls] OFF
 GO
 INSERT [dbo].[MethodPay] ([id], [name]) VALUES (1, N'Банковская карта')
+GO
 INSERT [dbo].[MethodPay] ([id], [name]) VALUES (2, N'Наличные')
+GO
 INSERT [dbo].[MethodPay] ([id], [name]) VALUES (3, N'СБП')
 GO
 SET IDENTITY_INSERT [dbo].[Restaurants] ON 
-
+GO
 INSERT [dbo].[Restaurants] ([id], [name], [rating], [address], [average_check], [photo_url], [description]) VALUES (1, N'Пушкин', 4.8, N'Тверской бул., 26А', 4500, N'/Images/pushkin.jpg', N'Легендарный ресторан русской кухни в самом центре Москвы. Интерьеры воссоздают атмосферу дворянской усадьбы XIX века: библиотека, антикварная мебель, камины. В меню — классические русские блюда в авторском прочтении: пельмени из трёх видов мяса, борщ с пампушками, медальоны из телятины. Отдельного внимания заслуживает кондитерская с домашними десертами и знаменитая веранда на крыше с видом на Тверской бульвар.')
+GO
 INSERT [dbo].[Restaurants] ([id], [name], [rating], [address], [average_check], [photo_url], [description]) VALUES (2, N'White Rabbit', 4.7, N'Смоленская пл., 3', 5000, N'/Images/whiterabbit.jpg', N'Панорамный ресторан на 16-м этаже Смоленского пассажа с захватывающим видом на Москву. Шеф-повар Владимир Мухин создаёт авторскую кухню, сочетающую русские традиции и современные европейские техники. Стеклянный купол, зимний сад и открытая терраса делают это место идеальным как для романтического ужина, так и для деловых встреч. В меню — дегустационные сеты, свежие морепродукты и уникальные десерты.')
+GO
 INSERT [dbo].[Restaurants] ([id], [name], [rating], [address], [average_check], [photo_url], [description]) VALUES (3, N'Турандот', 4.6, N'Тверской бул., 26', 6000, N'/Images/turandot.jpg', N'Ресторан китайской и паназиатской кухни, оформленный в стиле императорского дворца. Роскошные интерьеры, фарфоровые вазы, резные ширмы и живой оркестр создают атмосферу восточной сказки. Меню включает более 300 блюд: дим-самы, утка по-пекински, том-ям, суши и роллы. Летняя веранда с фонтаном и видом на Тверской бульвар — одно из самых популярных мест в городе.')
+GO
 INSERT [dbo].[Restaurants] ([id], [name], [rating], [address], [average_check], [photo_url], [description]) VALUES (4, N'Twins Garden', 5, N'Страстной бульвар, 8а', 5000, N'/Images/twinsgarden.jpg', N'Ресторан с двумя звёздами Michelin, концепция строится вокруг органических продуктов, значительная часть которых выращивается на собственной ферме команды. В меню — гастрономические сеты (в том числе «Путешествие по Золотому кольцу»), акцент на сезонность и локальные ингредиенты. Интерьер сдержанный, атмосфера камерная, сервис премиальный.')
+GO
 INSERT [dbo].[Restaurants] ([id], [name], [rating], [address], [average_check], [photo_url], [description]) VALUES (5, N'Рыбы нет', 4.5, N'Кутузовский пр-т, 12', 2800, N'/Images/fishnet.jpg', N'Ресторан авторской кухни с акцентом на мясные блюда и морепродукты. Название — дружеская шутка основателей, поэтому в меню рыба всё-таки есть: от сибаса на гриле до севиче и устриц. Интерьер выполнен в современном стиле с элементами лофта: открытая кухня, панорамные окна, мягкий свет. Барная карта включает авторские коктейли и обширную винную коллекцию.')
+GO
 SET IDENTITY_INSERT [dbo].[Restaurants] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Roles] ON 
-
+GO
 INSERT [dbo].[Roles] ([id], [name]) VALUES (1, N'Администратор')
+GO
 INSERT [dbo].[Roles] ([id], [name]) VALUES (2, N'Клиент')
+GO
 SET IDENTITY_INSERT [dbo].[Roles] OFF
 GO
 INSERT [dbo].[Status] ([id], [name]) VALUES (1, N'Новое')
+GO
 INSERT [dbo].[Status] ([id], [name]) VALUES (2, N'Подтверждено')
+GO
 INSERT [dbo].[Status] ([id], [name]) VALUES (3, N'Отменено')
+GO
 INSERT [dbo].[Status] ([id], [name]) VALUES (4, N'Завершено')
+GO
 INSERT [dbo].[Status] ([id], [name]) VALUES (5, N'Не пришёл')
 GO
 INSERT [dbo].[StatusPay] ([id], [name]) VALUES (1, N'Ожидает оплаты')
+GO
 INSERT [dbo].[StatusPay] ([id], [name]) VALUES (2, N'Оплачено')
+GO
 INSERT [dbo].[StatusPay] ([id], [name]) VALUES (3, N'Отменено')
 GO
 INSERT [dbo].[TypeTable] ([id], [name], [count_sit]) VALUES (1, N'Стол на 2 персоны', 2)
+GO
 INSERT [dbo].[TypeTable] ([id], [name], [count_sit]) VALUES (2, N'Стол на 4 персоны', 4)
+GO
 INSERT [dbo].[TypeTable] ([id], [name], [count_sit]) VALUES (3, N'Стол на 6 персон', 6)
+GO
 INSERT [dbo].[TypeTable] ([id], [name], [count_sit]) VALUES (4, N'Стол на 8 персон', 8)
+GO
 INSERT [dbo].[TypeTable] ([id], [name], [count_sit]) VALUES (5, N'Барная стойка', 1)
+GO
 INSERT [dbo].[TypeTable] ([id], [name], [count_sit]) VALUES (6, N'Круглый стол на 10 персон', 10)
 GO
 SET IDENTITY_INSERT [dbo].[Users] ON 
-
-INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active]) VALUES (1, 1, N'admin', N'hash_admin_123', N'Иван', N'Петров', N'+79000000001', 1)
-INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active]) VALUES (2, 2, N'client1', N'hash_client_1', N'Елена', N'Иванова', N'+79000000002', 1)
-INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active]) VALUES (3, 2, N'client2', N'hash_client_2', N'Сергей', N'Соколов', N'+79000000003', 1)
-INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active]) VALUES (4, 2, N'йцуке', N'BA85704A5462BC95629B454DF9AD5E4504CCF411', N'мяу', N'мяу', N'34567890987', 1)
-INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active]) VALUES (5, 2, N'SPKrokhmal', N'DCBBC60B6CCF83A41843B7009DE6EE0211A57721', N'София', N'Крохмаль', N'89880509170', 1)
+GO
+INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active], [email]) VALUES (1, 1, N'admin', N'hash_admin_123', N'Иван', N'Петров', N'+79000000001', 1, NULL)
+GO
+INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active], [email]) VALUES (2, 2, N'client1', N'hash_client_1', N'Елена', N'Иванова', N'+79000000002', 1, NULL)
+GO
+INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active], [email]) VALUES (3, 2, N'client2', N'hash_client_2', N'Сергей', N'Соколов', N'+79000000003', 1, NULL)
+GO
+INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active], [email]) VALUES (4, 2, N'йцуке', N'BA85704A5462BC95629B454DF9AD5E4504CCF411', N'мяу', N'мяу', N'34567890987', 1, NULL)
+GO
+INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active], [email]) VALUES (5, 2, N'SPKrokhmal', N'DCBBC60B6CCF83A41843B7009DE6EE0211A57721', N'София', N'Крохмаль', N'89880509170', 1, N'sd')
+GO
+INSERT [dbo].[Users] ([id], [role_id], [login], [password_hash], [first_name], [last_name], [phone], [is_active], [email]) VALUES (6, 1, N'1', N'356A192B7913B04C54574D18C28D46E6395428AB', N'1', N'1', N'1', 1, N'wedf@gmail.com')
+GO
 SET IDENTITY_INSERT [dbo].[Users] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Waitlist] ON 
-
-INSERT [dbo].[Waitlist] ([id], [user_id], [restaurant_id], [guests_count], [desired_datetime]) VALUES (1, 2, 1, 2, CAST(N'2026-10-10T19:00:00.000' AS DateTime))
-INSERT [dbo].[Waitlist] ([id], [user_id], [restaurant_id], [guests_count], [desired_datetime]) VALUES (2, 3, 3, 4, CAST(N'2026-10-12T20:00:00.000' AS DateTime))
-INSERT [dbo].[Waitlist] ([id], [user_id], [restaurant_id], [guests_count], [desired_datetime]) VALUES (3, 2, 5, 6, CAST(N'2026-10-14T18:30:00.000' AS DateTime))
-INSERT [dbo].[Waitlist] ([id], [user_id], [restaurant_id], [guests_count], [desired_datetime]) VALUES (4, 3, 2, 2, CAST(N'2026-10-16T19:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Waitlist] ([id], [user_id], [restaurant_id], [guests_count], [desired_datetime], [hall_id]) VALUES (1, 2, 1, 2, CAST(N'2026-10-10T19:00:00.000' AS DateTime), NULL)
+GO
+INSERT [dbo].[Waitlist] ([id], [user_id], [restaurant_id], [guests_count], [desired_datetime], [hall_id]) VALUES (2, 3, 3, 4, CAST(N'2026-10-12T20:00:00.000' AS DateTime), NULL)
+GO
+INSERT [dbo].[Waitlist] ([id], [user_id], [restaurant_id], [guests_count], [desired_datetime], [hall_id]) VALUES (3, 2, 5, 6, CAST(N'2026-10-14T18:30:00.000' AS DateTime), NULL)
+GO
+INSERT [dbo].[Waitlist] ([id], [user_id], [restaurant_id], [guests_count], [desired_datetime], [hall_id]) VALUES (4, 3, 2, 2, CAST(N'2026-10-16T19:00:00.000' AS DateTime), NULL)
+GO
 SET IDENTITY_INSERT [dbo].[Waitlist] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UQ__Users__7838F2720C9AF994]    Script Date: 17.10.2026 7:42:01 ******/
+/****** Object:  Index [UQ__Users__7838F2720C9AF994]    Script Date: 22.10.2026 11:34:42 ******/
 ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [UQ__Users__7838F2720C9AF994] UNIQUE NONCLUSTERED 
 (
 	[login] ASC
@@ -339,7 +440,7 @@ ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [UQ__Users__7838F2720C9AF994] UNIQUE N
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UQ__Users__B43B145FF2DF23B5]    Script Date: 17.10.2026 7:42:01 ******/
+/****** Object:  Index [UQ__Users__B43B145FF2DF23B5]    Script Date: 22.10.2026 11:34:42 ******/
 ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [UQ__Users__B43B145FF2DF23B5] UNIQUE NONCLUSTERED 
 (
 	[phone] ASC
@@ -408,4 +509,9 @@ ALTER TABLE [dbo].[Waitlist]  WITH CHECK ADD  CONSTRAINT [FK__Waitlist__user_i__
 REFERENCES [dbo].[Users] ([id])
 GO
 ALTER TABLE [dbo].[Waitlist] CHECK CONSTRAINT [FK__Waitlist__user_i__4AB81AF0]
+GO
+ALTER TABLE [dbo].[Waitlist]  WITH CHECK ADD  CONSTRAINT [FK_Waitlist_Halls] FOREIGN KEY([hall_id])
+REFERENCES [dbo].[Halls] ([id])
+GO
+ALTER TABLE [dbo].[Waitlist] CHECK CONSTRAINT [FK_Waitlist_Halls]
 GO
