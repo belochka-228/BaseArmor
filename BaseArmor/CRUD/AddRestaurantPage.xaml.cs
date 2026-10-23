@@ -29,9 +29,6 @@ namespace BaseArmor.CRUD
 
             _isEdit = restaurant != null;
             _currentRestaurant = restaurant ?? new Restaurants();
-
-            TitleText.Text = _isEdit ? "Редактирование ресторана" : "Добавление ресторана";
-
             DataContext = _currentRestaurant;
         }
 
@@ -53,7 +50,6 @@ namespace BaseArmor.CRUD
                 MessageBox.Show(errors.ToString(), "Ошибка");
                 return;
             }
-
             try
             {
                 if (!_isEdit)

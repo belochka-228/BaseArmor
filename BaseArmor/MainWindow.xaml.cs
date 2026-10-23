@@ -86,6 +86,72 @@ namespace BaseArmor
                 }
             }
         }
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (UserData.CurrentUser == null)
+            {
+                MessageBox.Show("Вы не авторизованы.");
+                MainFrame.Navigate(new _1LoginPage());
+                return;
+            }
+
+            MainFrame.Navigate(new _6UseProfPage());
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Выйти из системы?", "Выход", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                UserData.CurrentUser = null;
+                UserData.SelectedRestaurant = null;
+                UserData.SelectedHall = null;
+                MainFrame.Navigate(new _1LoginPage());
+            }
+        }
+        private void MainFrame_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            var page = e.Content as Page;
+            string pageName = page.GetType().Name;
+            if (page != null)
+            {
+                string title = "Котики вперед";
+
+                switch (pageName)
+                {
+                    case "_1LoginPage": title = ""; break;
+                    case "_2RegistrPage": title = ""; break;
+                    case "_8ChangePassPage": title = ""; break;
+                    case "_3RestoranPage": title = "Выбор ресторана"; break;
+                    case "_4HallPage": title = "Выбор зала"; break;
+                    case "_5BookingPage": title = "Бронирование"; break;
+                    case "_6UseProfPage": title = "Личный кабинет"; break;
+                    case "_7AdminPage": title = "Панель администратора"; break;
+                    case "_9DepozitPay": title = "Оплата депозита"; break;
+                    case "UsersTabPage": title = "Таблица пользователей"; break;
+                    case "AddUserPage": title = "Редактирование/добавление пользователя"; break;
+                    case "RestaurantsTabPage": title = "Таблица ресторанов"; break;
+                    case "AddRestaurantPage": title = "Редактирование/добавление ресторана"; break;
+                    case "BookingTabPage": title = "Таблица броней"; break;
+                    case "AddBookingPage": title = "Редактирование/добавление брони"; break;
+                    case "DiagrammPage": title = "Диаграммы"; break;
+                }
+                PageTitleText.Text = title;
+            }
+            bool isAuthPage = pageName == "_1LoginPage" || pageName == "_2RegistrPage" || pageName == "_8ChangePassPage";
+
+            ProfileButton.Visibility = isAuthPage ? Visibility.Collapsed : Visibility.Visible;
+            LogoutButton.Visibility = isAuthPage ? Visibility.Collapsed : Visibility.Visible;
+
+            if (!isAuthPage)
+            {
+                bool hideProfile = pageName == "_6UseProfPage" || pageName == "_7AdminPage" || pageName == "UsersTabPage"
+                                || pageName == "AddUserPage" || pageName == "RestaurantsTabPage"
+                                || pageName == "AddRestaurantPage" || pageName == "BookingTabPage"
+                                || pageName == "AddBookingPage" || pageName == "DiagrammPage"
+                                || (UserData.CurrentUser != null && UserData.CurrentUser.role_id == 1);
+                ProfileButton.Visibility = hideProfile ? Visibility.Collapsed : Visibility.Visible;
+            }
+        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

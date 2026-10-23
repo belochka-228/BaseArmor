@@ -176,19 +176,6 @@ namespace BaseArmor.Pages
             MessageBox.Show("Вы добавлены в лист ожидания.");
             NavigationService?.Navigate(new _6UseProfPage());
         }
-        private void BtnHalls_Click(object sender, RoutedEventArgs e)
-        {
-            UserData.SelectedHall = null;
-            NavigationService?.Navigate(new _4HallPage());
-        }
-
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            UserData.SelectedRestaurant = null;
-            UserData.SelectedHall = null;
-            UserData.CurrentUser = null;
-            NavigationService?.Navigate(new _1LoginPage());
-        }
 
         private void BtnPoiskStolikov_Click(object sender, RoutedEventArgs e)
         {
@@ -267,11 +254,6 @@ namespace BaseArmor.Pages
             UserData.SelectedRestaurant = null;
             UserData.SelectedHall = null;
             NavigationService?.Navigate(new _3RestoranPage());
-        }
-            
-        private void BtnProfile_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new _6UseProfPage());
         }
     }
 }

@@ -66,15 +66,5 @@ namespace BaseArmor.Pages
             UserData.SelectedRestaurant = rest;
             NavigationService.Navigate(new _4HallPage());
         }
-
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new _1LoginPage());
-        }
-
-        private void BtnProfil_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new _6UseProfPage());
-        }
     }
 }

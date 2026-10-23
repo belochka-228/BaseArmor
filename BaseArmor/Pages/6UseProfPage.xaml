@@ -13,15 +13,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="400">
-            <TextBlock Text="Личный кабинет" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
-        </Border>
 
-        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,5,0,5">
+        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Margin="0,5,0,5">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Margin="30,0">
                     <TextBlock Text="ФИО:" FontWeight="Bold"/>
@@ -42,7 +38,7 @@
             </StackPanel>
         </Border>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -135,9 +131,8 @@
                 </ScrollViewer>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Content="Новая бронь" Click="BtnRest_Click"/>
-            <Button Content="Выйти из системы" Click="BtnBack_Click"/>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Новая бронь" Width="120" Click="BtnRest_Click" />
         </StackPanel>
     </Grid>
 </Page>

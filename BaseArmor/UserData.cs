@@ -29,11 +29,27 @@ namespace BaseArmor
     {
         public override string ToString()
         {
-            return $"Стол {id}";
+            int seats = TypeTable != null ? TypeTable.count_sit : 0;
+            return $"Стол {id} ({seats} чел.)";
         }
     }
 
     public partial class Status
+    {
+        public override string ToString()
+        {
+            return name;
+        }
+    }
+
+    public partial class Roles
+    {
+        public override string ToString()
+        {
+            return name;
+        }
+    }
+    public partial class Restaurants
     {
         public override string ToString()
         {

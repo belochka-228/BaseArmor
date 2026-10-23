@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Word;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace BaseArmor.CRUD
     /// <summary>
     /// Логика взаимодействия для AddUserPage.xaml
     /// </summary>
-    public partial class AddUserPage : Page
+    public partial class AddUserPage : System.Windows.Controls.Page
     {
         private Users _currentUser;
         private bool _isEdit = false;
@@ -29,8 +30,6 @@ namespace BaseArmor.CRUD
 
             _isEdit = user != null;
             _currentUser = user ?? new Users();
-            TitleText.Text = _isEdit ? "Редактирование пользователя" : "Добавление пользователя";
-
             cmbRole.ItemsSource = Core.Context.Roles.ToList();
             DataContext = _currentUser;
             if (!_isEdit)
@@ -39,7 +38,18 @@ namespace BaseArmor.CRUD
                 chkActive.IsChecked = true;
             }
         }
-
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
@@ -61,7 +71,21 @@ namespace BaseArmor.CRUD
                 .FirstOrDefault(u => u.login == _currentUser.login && u.id != _currentUser.id);
             if (existing != null)
                 errors.AppendLine("Пользователь с таким логином уже существует.");
-
+            if (!IsValidEmail(_currentUser.email))
+            {
+                MessageBox.Show("Введите корректный email (пример: user@mail.ru).");
+                return;
+            }
+            if (Core.Context.Users.Any(u => u.email == _currentUser.email && u.id != _currentUser.id))
+            {
+                MessageBox.Show("Пользователь с такой почтой уже существует.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (Core.Context.Users.Any(u => u.phone == _currentUser.phone && u.id != _currentUser.id))
+            {
+                MessageBox.Show("Пользователь с таким номером телефона уже существует.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString(), "Ошибка");

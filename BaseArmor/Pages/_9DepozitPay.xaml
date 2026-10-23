@@ -9,17 +9,7 @@
       Title="_9DepozitPay">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <Border Grid.Row="0" Style="{StaticResource CardBorder}">
-            <TextBlock Text="Оплата депозита" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
-        </Border>
-
-        <Border Grid.Row="1" Style="{StaticResource CardBorder}">
+        <Border Style="{StaticResource CardBorder}">
             <StackPanel>
 
                 <TextBlock Text="Сумма к оплате:"/>

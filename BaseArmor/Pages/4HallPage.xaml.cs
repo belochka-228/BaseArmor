@@ -41,7 +41,6 @@ namespace BaseArmor.Pages
                     break;
             }
             _isLoaded = true;
-            TitleRestik.Text = $"Залы ресторана: {UserData.SelectedRestaurant.name}";
             LoadHalls();
         }
         private void LoadHalls()
@@ -78,11 +77,6 @@ namespace BaseArmor.Pages
             LoadHalls();
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new _1LoginPage());
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -97,11 +91,6 @@ namespace BaseArmor.Pages
         {
             UserData.SelectedRestaurant = null;
             NavigationService?.Navigate(new _3RestoranPage());
-        }
-
-        private void BtnProfile_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new _6UseProfPage());
         }
     }
 }

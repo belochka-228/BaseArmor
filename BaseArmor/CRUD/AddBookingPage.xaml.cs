@@ -30,21 +30,19 @@ namespace BaseArmor.CRUD
             _isEdit = booking != null;
             _currentBooking = booking ?? new Booking();
 
-            TitleText.Text = _isEdit ? "Редактирование брони" : "Добавление брони";
-
             cmbUser.ItemsSource = Core.Context.Users.ToList();
-            cmbUser.SelectedValuePath = "id";
-
-            cmbTable.ItemsSource = Core.Context.DiningTable.ToList();
-            cmbTable.SelectedValuePath = "id";
-
             cmbStatus.ItemsSource = Core.Context.Status.ToList();
-            cmbStatus.SelectedValuePath = "id";
+            cmbRestaurant.ItemsSource = Core.Context.Restaurants.ToList();
 
             DataContext = _currentBooking;
+
             if (_isEdit)
             {
                 txtDate.Text = _currentBooking.start_datatime.ToString("dd.MM.yyyy HH:mm");
+                if (_currentBooking.DiningTable != null && _currentBooking.DiningTable.Halls != null)
+                {
+                    cmbRestaurant.SelectedValue = _currentBooking.DiningTable.Halls.restaurant_id;
+                }
             }
         }
 
@@ -142,6 +140,20 @@ namespace BaseArmor.CRUD
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new BookingTabPage());
+        }
+
+        private void cmbRestaurant_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbRestaurant.SelectedValue == null) return;
+            int restaurantId = (int)cmbRestaurant.SelectedValue;
+
+            var tables = Core.Context.DiningTable.Where(t => t.is_active == true).Where(t => t.Halls.restaurant_id == restaurantId).ToList();
+
+            cmbTable.ItemsSource = tables;
+            if (_isEdit && _currentBooking.table_id > 0)
+            {
+                cmbTable.SelectedValue = _currentBooking.table_id;
+            }
         }
     }
 }

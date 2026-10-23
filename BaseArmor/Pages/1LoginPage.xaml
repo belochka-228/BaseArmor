@@ -26,14 +26,14 @@
                     <TextBlock x:Name="txtPasswordHint" Text="Введите пароль" Style="{StaticResource PlaceholderText}" MouseLeftButtonUp="txtPasswordHint_MouseLeftButtonUp"/>
                 </Grid>
 
-                <Button Content="Войти" Click="AutoButton_Click" />
+                <Button x:Name="ButtonAuth" Content="Войти" Click="AutoButton_Click" />
                 <Button Content="Регистрация" Click="RegisterButton_Click"  Background="Transparent" Foreground="{StaticResource PrimaryBrush}"
                         BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"/>
                 <Button x:Name="ButtonChangePassword" Content="Смена пароля" Click="ButtonChangePassword_Click" Background="Transparent" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"/>
 
                 <TextBlock x:Name="txtCaptcha" Text="Капча:" Visibility="Hidden"/>
                 <TextBox x:Name="captcha" CommandManager.PreviewExecuted="textBox_PreviewExecuted" ContextMenu="{x:Null}" 
-                         Visibility="Hidden" Height="42" Foreground="Red" FontStyle="Italic" FontWeight="Heavy" 
+                         Visibility="Hidden" Height="42" Foreground="Red" FontStyle="Oblique" FontWeight="Bold" TextDecorations="Strikethrough"
                          Background="{x:Null}" FontStretch="UltraCondensed" IsReadOnly="True" HorizontalContentAlignment="Center" 
                          VerticalContentAlignment="Center" FontSize="20" Margin="0,5,0,5"/>
                 <TextBox x:Name="captchaInput" Visibility="Hidden" Height="34" TextWrapping="Wrap" Text=""/>

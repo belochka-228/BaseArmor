@@ -10,16 +10,11 @@
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Width="600">
-            <TextBlock Text="Таблица ресторанов" HorizontalAlignment="Center" Style="{StaticResource HeaderText}"/>
-        </Border>
-
-        <DataGrid Grid.Row="1" x:Name="DataGridRestaurants" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,10,0,10">
+        <DataGrid Grid.Row="0" x:Name="DataGridRestaurants" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,10,0,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="50"/>
                 <DataGridTextColumn Header="Название" Binding="{Binding name}" Width="150"/>
@@ -36,7 +31,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Добавить" Click="BtnAdd_Click" Width="150"/>
             <Button Content="Удалить" Click="BtnDelete_Click" Width="150"/>
             <Button Content="Назад" Click="BtnBack_Click" Width="150" Background="Transparent" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1"/>

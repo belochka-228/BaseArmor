@@ -1,14 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="PrimaryBrush" Color="#0198AF"/>
-    <SolidColorBrush x:Key="SecondaryBrush" Color="#275E9F"/>
-    <SolidColorBrush x:Key="BackgroundBrush" Color="#1E1E1E"/>
-    <SolidColorBrush x:Key="SurfaceBrush" Color="#2D2D2D"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#1A0B2E"/>
+    <SolidColorBrush x:Key="SurfaceBrush" Color="#2D1B4E"/>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="#A020F0"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="#6A0DAD"/>
     <SolidColorBrush x:Key="TextBrush" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="TextLightBrush" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="BorderBrush" Color="#444444"/>
-    <SolidColorBrush x:Key="PlaceholderBrush" Color="#888888"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#4B2C7E"/>
+    <SolidColorBrush x:Key="PlaceholderBrush" Color="#9B7EB8"/>
 
     <Style TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Open Sans"/>
@@ -16,21 +16,17 @@
         <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
     </Style>
 
-    <Style x:Key="PlaceholderText" TargetType="TextBlock" 
-           BasedOn="{StaticResource {x:Type TextBlock}}">
+    <Style x:Key="PlaceholderText" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
         <Setter Property="Foreground" Value="{StaticResource PlaceholderBrush}"/>
         <Setter Property="Margin" Value="8,0,0,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="IsHitTestVisible" Value="False"/>
         <Setter Property="FontSize" Value="13"/>
     </Style>
-    
 
-    <Style x:Key="DarkText" TargetType="TextBlock" 
-           BasedOn="{StaticResource {x:Type TextBlock}}">
-        <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+    <Style x:Key="DarkText" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="IsHitTestVisible" Value="False"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
@@ -65,8 +61,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
                     <Grid>
-                        <ToggleButton x:Name="ToggleButton"  Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" 
-                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                        <ToggleButton x:Name="ToggleButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
                             <ToggleButton.Template>
                                 <ControlTemplate TargetType="ToggleButton">
                                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
@@ -75,22 +70,21 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="20"/>
                                             </Grid.ColumnDefinitions>
-                                            <Path Grid.Column="1" Data="M 0 0 L 4 4 L 8 0 Z"  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBox}}" 
-                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Path Grid.Column="1" Data="M 0 0 L 4 4 L 8 0 Z" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ComboBox}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Grid>
                                     </Border>
                                 </ControlTemplate>
                             </ToggleButton.Template>
                         </ToggleButton>
+
                         <ContentPresenter x:Name="ContentSite" IsHitTestVisible="False" Margin="5,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                          Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" TextElement.Foreground="{TemplateBinding Foreground}"/>  
+                                          Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" TextElement.Foreground="{TemplateBinding Foreground}"/>
 
                         <Popup x:Name="PART_Popup" AllowsTransparency="True" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" PopupAnimation="Slide">
-                            <Border MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}"  Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}"  BorderThickness="1">
+                            <Border MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
                                 <ScrollViewer>
-                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
                                 </ScrollViewer>
                             </Border>
                         </Popup>
@@ -130,6 +124,7 @@
         <Setter Property="Padding" Value="20"/>
         <Setter Property="Margin" Value="10"/>
     </Style>
+
     <Style x:Key="CardBorder2" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource PlaceholderBrush}"/>
         <Setter Property="CornerRadius" Value="10"/>
@@ -137,9 +132,7 @@
         <Setter Property="Margin" Value="10"/>
     </Style>
 
-
-    <Style x:Key="HeaderText" TargetType="TextBlock" 
-           BasedOn="{StaticResource {x:Type TextBlock}}">
+    <Style x:Key="HeaderText" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
         <Setter Property="FontSize" Value="22"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -152,11 +145,11 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Style.Triggers>
-        <Trigger Property="IsSelected" Value="True">
-            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
-            <Setter Property="Foreground" Value="{DynamicResource TextLightBrush}"/>
-        </Trigger>
-    </Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TextLightBrush}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="DataGridColumnHeader">
@@ -173,4 +166,5 @@
         <Setter Property="AlternatingRowBackground" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
     </Style>
+
 </ResourceDictionary>

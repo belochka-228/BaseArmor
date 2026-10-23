@@ -11,8 +11,6 @@
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Border Style="{StaticResource CardBorder}" Width="500">
             <StackPanel>
-                <TextBlock x:Name="TitleText" Text="Добавление ресторана" Style="{StaticResource HeaderText}"/>
-
                 <TextBlock Text="Название"/>
                 <TextBox x:Name="txtName" Text="{Binding name}"/>
 

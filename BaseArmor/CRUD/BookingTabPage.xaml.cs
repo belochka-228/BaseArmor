@@ -29,7 +29,7 @@ namespace BaseArmor.CRUD
 
         private void LoadData()
         {
-            DataGridBooking.ItemsSource = Core.Context.Booking.OrderByDescending(b => b.start_datatime).ToList();
+            DataGridBooking.ItemsSource = Core.Context.Booking.OrderBy(b => b.start_datatime).ToList();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)

@@ -9,7 +9,31 @@
         Background ="{DynamicResource PlaceholderBrush}"
         Title="Система онлайн-бронирования столиков 'Котики вперед'" >
     <Grid>
-        <Button x:Name="ThemeButton" Content="🌙 Тема" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ThemeButton_Click"/>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{DynamicResource SurfaceBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1">
+            <Grid Margin="10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="LogoutButton" Width="160" Content="Выйти из системы" Click="LogoutButton_Click" Margin="5" Foreground="{DynamicResource PrimaryBrush}" BorderBrush="{DynamicResource PrimaryBrush}"/>
+                </StackPanel>
+
+                <TextBlock x:Name="PageTitleText" Grid.Column="1" Text="Авторизация" Style="{StaticResource HeaderText}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="ThemeButton" Content="🌙 Тема" Width="85" Click="ThemeButton_Click" Margin="5"/>
+                    <Button x:Name="ProfileButton" Content="👤 Профиль" Click="ProfileButton_Click" Margin="5"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Navigating="MainFrame_Navigating"/>
     </Grid>
 </Window>

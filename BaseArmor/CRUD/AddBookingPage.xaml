@@ -12,11 +12,12 @@
         <Border Style="{StaticResource CardBorder}" Width="500">
             <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="650">
                 <StackPanel>
-                    <TextBlock x:Name="TitleText" Text="Добавление брони" Style="{StaticResource HeaderText}"/>
-
                     <TextBlock Text="Пользователь"/>
                     <ComboBox x:Name="cmbUser" SelectedValuePath="id" SelectedValue="{Binding user_id}"/>
 
+                    <TextBlock Text="Ресторан"/>
+                    <ComboBox x:Name="cmbRestaurant" SelectedValuePath="id" SelectionChanged="cmbRestaurant_SelectionChanged"/>
+                    
                     <TextBlock Text="Столик"/>
                     <ComboBox x:Name="cmbTable" SelectedValuePath="id" SelectedValue="{Binding table_id}"/>
 

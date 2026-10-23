@@ -58,11 +58,6 @@ namespace BaseArmor.Pages
 
             var user = Core.Context.Users.Include("Roles").FirstOrDefault(u => u.login == login && u.password_hash == hashedPassword);
 
-            if (!user.is_active)
-            {
-                MessageBox.Show("Ваш аккаунт заблокирован.");
-                return;
-            }
             if (user == null)
             {
                 MessageBox.Show("Неверный логин или пароль.");
@@ -84,6 +79,11 @@ namespace BaseArmor.Pages
             UserData.CaptchaVisible = false;
             UserData.CurrentUser = user;
 
+            if (!user.is_active)
+            {
+                MessageBox.Show("Ваш аккаунт заблокирован.");
+                return;
+            }
             switch (user.Roles.name)
             {
                 case "Администратор":
@@ -142,6 +142,7 @@ namespace BaseArmor.Pages
                     txtPasswordHint.Visibility = Visibility.Visible;
 
                     ButtonChangePassword.Visibility = Visibility.Visible;
+                    ButtonAuth.Visibility = Visibility.Visible;
                     UserData.CaptchaVisible = false;
                     return;
 
@@ -159,6 +160,7 @@ namespace BaseArmor.Pages
                     txtPasswordHint.Visibility = Visibility.Hidden;
 
                     ButtonChangePassword.Visibility = Visibility.Hidden;
+                    ButtonAuth.Visibility = Visibility.Hidden;
                     UserData.CaptchaVisible = true;
                     return;
             }
